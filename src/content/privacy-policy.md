@@ -219,7 +219,7 @@ We may update this policy to reflect changes in the App or legal requirements. T
 
 Questions, concerns, or data requests:
 
-**Email:** [mm.wolff@icloud.com](mailto:mm.wolff@icloud.com)
+**Email:** [tend@wolff.sh](mailto:tend@wolff.sh)
 
 ---
 
