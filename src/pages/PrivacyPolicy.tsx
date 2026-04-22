@@ -1,25 +1,11 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import privacyPolicyMd from '../content/privacy-policy.md?raw';
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    backgroundColor: '#000',
-    color: '#e5e5ea',
-    padding: '2rem',
-  },
-  content: {
-    maxWidth: '720px',
-    margin: '0 auto',
-    lineHeight: 1.7,
-  },
-};
+import { Layout } from '../components/Layout';
 
 export function PrivacyPolicy() {
   return (
-    <div style={styles.container}>
+    <Layout title="Privacy Policy">
       <div style={styles.content} className="markdown-body">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {privacyPolicyMd}
@@ -39,6 +25,16 @@ export function PrivacyPolicy() {
         .markdown-body li { margin-bottom: 0.3rem; }
         .markdown-body code { background: #1c1c1e; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
       `}</style>
-    </div>
+    </Layout>
   );
 }
+
+const styles: Record<string, React.CSSProperties> = {
+  content: {
+    maxWidth: '720px',
+    margin: '0 auto',
+    lineHeight: 1.7,
+    padding: '2rem 1.5rem',
+    color: '#e5e5ea',
+  },
+};

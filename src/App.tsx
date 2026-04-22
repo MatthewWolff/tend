@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Home } from './pages/Home';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { Features } from './pages/Features';
+import { About } from './pages/About';
+import { FAQ } from './pages/FAQ';
 
 const AppRoutes: React.FC = () => {
   const navigate = useNavigate();
@@ -23,6 +26,9 @@ const AppRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/features" element={<Features />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/faq" element={<FAQ />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />

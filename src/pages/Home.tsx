@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import {
   Timer,
   WifiOff,
@@ -7,24 +6,65 @@ import {
   Calendar,
   ShieldCheck,
 } from 'lucide-react';
+import { Layout } from '../components/Layout';
+import { colors, TESTFLIGHT_URL } from '../theme';
 
-const colors = {
-  bg: '#000000',
-  surface: '#1A1F1C',
-  surfaceBorder: '#363A37',
-  green: '#32D74B',
-  greenPressed: '#28B83E',
-  textPrimary: '#FFFFFF',
-  textSecondary: '#EBEBF5',
-  textTertiary: 'rgba(235, 235, 245, 0.6)',
-};
+const iconProps = { size: 20, strokeWidth: 1.75 };
+
+const features = [
+  { icon: <Timer {...iconProps} />, title: 'Frequency-based', desc: 'Set how often you want to connect with each friend' },
+  { icon: <WifiOff {...iconProps} />, title: 'Offline-first', desc: 'Works without internet — syncs when you\'re back online' },
+  { icon: <Bell {...iconProps} />, title: 'Smart reminders', desc: 'Gentle nudges when it\'s time to reach out' },
+  { icon: <Layers {...iconProps} />, title: 'Relationship tiers', desc: 'Organize friends by closeness, from inner circle to casual' },
+  { icon: <Calendar {...iconProps} />, title: 'Calendar sync', desc: 'Scheduled connections show up in your iOS calendar' },
+  { icon: <ShieldCheck {...iconProps} />, title: 'Private by design', desc: 'Your data stays on your device — cloud backup optional' },
+];
+
+export function Home() {
+  return (
+    <Layout>
+      <div style={styles.content}>
+        <section style={styles.hero}>
+          <img
+            src="/tend/app-icon-256.png"
+            alt="Tend app icon"
+            style={styles.icon}
+          />
+          <h1 style={styles.title}>Tend</h1>
+          <p style={styles.subtitle}>
+            A personal relationship manager for iOS.
+          </p>
+          <p style={styles.tagline}>
+            For people who care deeply but forget easily.
+          </p>
+          <a
+            href={TESTFLIGHT_URL}
+            style={styles.betaButton}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join the Beta — iOS
+          </a>
+        </section>
+
+        <section style={styles.features}>
+          {features.map((f) => (
+            <div key={f.title} style={styles.featureCard}>
+              <div style={styles.featureHeader}>
+                <span style={styles.featureIcon}>{f.icon}</span>
+                <p style={styles.featureTitle}>{f.title}</p>
+              </div>
+              <p style={styles.featureDesc}>{f.desc}</p>
+            </div>
+          ))}
+        </section>
+      </div>
+    </Layout>
+  );
+}
 
 const styles: Record<string, React.CSSProperties> = {
-  page: {
-    minHeight: '100vh',
-    backgroundColor: colors.bg,
-    color: colors.textPrimary,
-    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
+  content: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -36,7 +76,7 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: 'center',
     textAlign: 'center',
     maxWidth: '640px',
-    paddingTop: 'clamp(4rem, 15vh, 8rem)',
+    paddingTop: 'clamp(3rem, 10vh, 6rem)',
     paddingBottom: '3rem',
   },
   icon: {
@@ -63,13 +103,6 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '0.95rem',
     color: colors.textTertiary,
     margin: '0 0 2.5rem',
-    fontStyle: 'italic',
-    lineHeight: 1.5,
-  },
-  tagline: {
-    fontSize: '0.95rem',
-    color: colors.textTertiary,
-    margin: '0 0 2.5rem',
     lineHeight: 1.5,
     maxWidth: '400px',
   },
@@ -85,8 +118,6 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '14px',
     textDecoration: 'none',
     marginBottom: '3rem',
-    transition: 'background-color 0.2s, transform 0.1s',
-    cursor: 'pointer',
   },
   features: {
     display: 'grid',
@@ -125,83 +156,4 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
     lineHeight: 1.4,
   },
-  footer: {
-    paddingBottom: '2rem',
-    display: 'flex',
-    gap: '1.5rem',
-    alignItems: 'center',
-  },
-  footerLink: {
-    color: colors.textTertiary,
-    textDecoration: 'none',
-    fontSize: '0.85rem',
-    transition: 'color 0.2s',
-  },
-  footerDot: {
-    color: colors.surfaceBorder,
-    fontSize: '0.5rem',
-  },
 };
-
-const iconProps = { size: 20, strokeWidth: 1.75 };
-
-const features = [
-  { icon: <Timer {...iconProps} />, title: 'Frequency-based', desc: 'Set how often you want to connect with each friend' },
-  { icon: <WifiOff {...iconProps} />, title: 'Offline-first', desc: 'Works without internet — syncs when you\'re back online' },
-  { icon: <Bell {...iconProps} />, title: 'Smart reminders', desc: 'Gentle nudges when it\'s time to reach out' },
-  { icon: <Layers {...iconProps} />, title: 'Relationship tiers', desc: 'Organize friends by closeness, from inner circle to casual' },
-  { icon: <Calendar {...iconProps} />, title: 'Calendar sync', desc: 'Scheduled connections show up in your iOS calendar' },
-  { icon: <ShieldCheck {...iconProps} />, title: 'Private by design', desc: 'Your data stays on your device — cloud backup optional' },
-];
-
-export function Home() {
-  return (
-    <div style={styles.page}>
-      <section style={styles.hero}>
-        <img
-          src="/tend/app-icon-256.png"
-          alt="Tend app icon"
-          style={styles.icon}
-        />
-        <h1 style={styles.title}>Tend</h1>
-        <p style={styles.subtitle}>
-          A personal relationship manager for iOS.
-        </p>
-        <p style={styles.tagline}>
-          For people who care deeply but forget easily.
-        </p>
-        <a
-          href="https://testflight.apple.com/join/HvuJgSBe"
-          style={styles.betaButton}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Join the Beta — iOS
-        </a>
-      </section>
-
-      <section style={styles.features}>
-        {features.map((f) => (
-          <div key={f.title} style={styles.featureCard}>
-            <div style={styles.featureHeader}>
-              <span style={styles.featureIcon}>{f.icon}</span>
-              <p style={styles.featureTitle}>{f.title}</p>
-            </div>
-            <p style={styles.featureDesc}>{f.desc}</p>
-          </div>
-        ))}
-      </section>
-
-      <footer style={styles.footer}>
-        <Link to="/privacy-policy" style={styles.footerLink}>Privacy Policy</Link>
-        <span style={styles.footerDot}>●</span>
-        <a
-          href="mailto:tend@wolff.sh"
-          style={styles.footerLink}
-        >
-          Contact
-        </a>
-      </footer>
-    </div>
-  );
-}
