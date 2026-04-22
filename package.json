@@ -6,7 +6,7 @@
   "homepage": "https://wolff.sh/tend",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-meta-pages.cjs",
     "preview": "vite preview",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist"
