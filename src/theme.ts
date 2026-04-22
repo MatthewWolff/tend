@@ -4,7 +4,7 @@
  */
 
 export const colors = {
-  bg: '#000000',
+  bg: '#0A0F0C',
   surface: '#1A1F1C',
   surfaceHover: '#242A26',
   surfaceBorder: '#363A37',

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-route
 import { Home } from './pages/Home';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Features } from './pages/Features';
+import { Docs } from './pages/Docs';
 import { About } from './pages/About';
 import { FAQ } from './pages/FAQ';
 
@@ -29,6 +30,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/features" element={<Features />} />
       <Route path="/about" element={<About />} />
       <Route path="/faq" element={<FAQ />} />
+      <Route path="/docs" element={<Docs />} />
+      <Route path="/docs/*" element={<Docs />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />
