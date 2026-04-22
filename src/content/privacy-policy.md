@@ -1,7 +1,7 @@
 # Privacy Policy
 
 **Effective Date:** March 23, 2026
-**Last Updated:** March 23, 2026
+**Last Updated:** April 22, 2026
 
 Tend ("the App") is a personal relationship manager for iOS built by Matthew Wolff ("we," "us," or "our"). This policy explains what data the App collects, how it is used, where it is stored, and what choices you have.
 
@@ -13,6 +13,7 @@ Tend ("the App") is a personal relationship manager for iOS built by Matthew Wol
 - Cloud backup is optional and protected by row-level security.
 - We do not sell, rent, share, or monetize your data.
 - We do not use third-party analytics, advertising, or tracking SDKs.
+- Anonymous usage events (e.g., "friend added," "backup created") are sent to our own Supabase instance to help us improve the App. No personal data is included.
 - You can delete your data — including your account — at any time from within the App.
 
 ---
@@ -35,16 +36,16 @@ Tend ("the App") is a personal relationship manager for iOS built by Matthew Wol
 | Data Type | Purpose |
 |---|---|
 | **Notification queue** | Scheduling and delivering local reminders (stored on-device, cleared after delivery) |
-| **Audit log** | Recording changes to friend data for your review (stored on-device only) |
+| **Audit log** | Recording changes to friend data, connections, events, settings, and notifications for your review (stored on-device only) |
 | **Calculated metrics** | Target tier, effective tier, due dates, connection statistics (derived from your data, not transmitted) |
 | **Diagnostic logs** | Error-level events with timestamps, error messages, and app version (see Section 1.4) |
+| **Usage events** | Anonymous, aggregate events like "friend added" or "backup created" (see Section 1.5) |
 
 ### 1.3 Data We Do Not Collect
 
 - **No third-party analytics or tracking SDKs.** We do not use Firebase Analytics, Amplitude, Mixpanel, Segment, Sentry, Crashlytics, or any third-party analytics or crash reporting service.
 - **No advertising data.** We do not serve ads or collect data for advertising purposes.
 - **No background location tracking.** Location is only accessed when you actively use a location feature. Background location updates are explicitly disabled in the App.
-- **No contact library access.** We use the iOS contact picker — you select which contacts to import. We never scan or read your full address book.
 - **No calendar reading.** The App only writes events to your calendar. It does not read existing calendar entries.
 - **No device fingerprinting.** We do not collect device identifiers, hardware information, or generate fingerprints.
 
@@ -63,6 +64,16 @@ Log entries **do not** contain friend names, connection details, personal data, 
 
 **Clearing logs:** You can delete all local log files at any time from **Settings → Diagnostic Logs → Clear Logs**. Remote logs are deleted when you delete your account.
 
+### 1.5 Usage Events
+
+The App sends anonymous usage events to our own Supabase instance to help us understand how the App is used and identify areas for improvement. Examples:
+
+- "friend_added," "connection_logged," "backup_created," "settings_changed"
+- Session start and end times (to calculate session duration)
+- No personal data is included — no names, no friend details, no connection content
+
+These events are associated with your authenticated user ID and stored in our Supabase database, protected by the same row-level security as your backup data. They are deleted when you delete your account.
+
 ---
 
 ## 2. How We Use Your Data
@@ -73,9 +84,11 @@ All data you provide is used exclusively for App functionality:
 - Calculating due dates and relationship circle assignments
 - Scheduling local notification reminders
 - Syncing connections to your iOS calendar (if enabled)
+- Syncing contact information from your iOS address book (if you grant access)
 - Showing transit time to a friend's address (if enabled)
 - Backing up and restoring your data (if cloud backup is enabled)
 - Authenticating your account
+- Understanding usage patterns to improve the App (anonymous usage events only)
 
 We do not use your data for marketing, profiling, advertising, or any purpose beyond operating the App for you.
 
@@ -118,10 +131,19 @@ All permissions are optional. The App functions without any of them.
 
 | Permission | Purpose | When Requested |
 |---|---|---|
-| **Contacts** | Import selected contacts as friends | When you tap "Import from Contacts" |
+| **Contacts (Picker)** | Import selected contacts as friends via the iOS contact picker | When you tap "Import from Contacts" — no permission prompt required |
+| **Contacts (Full or Limited)** | Sync updated contact information (birthday, phone, address) for friends you've already imported | When you tap "Sync Contacts" in Settings — a permission explanation is shown first |
 | **Notifications** | Send local reminders when friends are overdue or have upcoming birthdays | During onboarding or in Settings |
-| **Calendar** | Write logged connections as calendar events | When you enable Calendar Sync in Settings |
+| **Calendar** | Write logged connections as calendar events; resync after cloud restore | When you enable Calendar Sync in Settings |
 | **Location (When In Use)** | Show transit time to a friend's address; record location on a connection | When you view a transit card or add a location to a connection |
+
+### Contact Access Details
+
+Tend uses two different contact access methods:
+
+- **Contact Picker (no permission required):** When you import contacts, the iOS system picker lets you select specific contacts. The App receives only the contacts you choose — it never sees your full address book. This requires no iOS permission prompt.
+
+- **Contact Sync (requires permission):** If you want to keep imported friends' info up to date (e.g., when a contact changes their phone number), you can grant Tend contact access in Settings. On iOS 18+, you can choose "Full Access" (sync all linked contacts) or "Select Contacts" (sync only contacts you pick). A pre-permission explanation is shown before the iOS prompt. You can revoke this access at any time in iOS Settings.
 
 Denying any permission does not block core features. You can change permissions at any time in iOS Settings.
 
@@ -131,7 +153,7 @@ Denying any permission does not block core features. You can change permissions 
 
 | Service | Provider | Purpose | Data Shared |
 |---|---|---|---|
-| **Supabase** | Supabase Inc. | Authentication and optional cloud backup | Email, user ID, app data (if backup enabled) |
+| **Supabase** | Supabase Inc. | Authentication, optional cloud backup, and anonymous usage events | Email, user ID, app data (if backup enabled), anonymous usage events |
 | **Google Sign-In** | Google LLC | Account authentication | Email, display name |
 | **Google Maps Platform** | Google LLC | Address autocomplete (Places API), transit time (Routes API), address coordinates (Geocoding API) | Address queries, origin/destination for transit (approximate location if permission granted) |
 | **Apple Push Notification Service** | Apple Inc. | Deliver local notifications | Device push token (no personal data) |
@@ -152,6 +174,7 @@ We do not share data with any advertising networks, data brokers, or analytics p
 | **Audit log** | Stored on-device only; deleted when you uninstall or delete your account |
 | **Diagnostic logs (local)** | Rotated and cleaned up automatically; cleared via Settings or on uninstall |
 | **Diagnostic logs (cloud)** | Uploaded only if cloud backup is enabled or manually triggered; deleted on account deletion |
+| **Usage events** | Retained for product improvement; deleted on account deletion |
 
 ### Account Deletion
 
@@ -159,6 +182,7 @@ You can delete your account from within the App at **Settings → Delete Account
 - All cloud backup data (auto-sync and manual backup slots)
 - Your authentication record
 - Remote diagnostic logs (if any)
+- Anonymous usage events
 - Your Supabase user account
 
 On-device data is also deleted during this process. This action is irreversible.
