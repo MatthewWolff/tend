@@ -181,15 +181,19 @@ const styles: Record<string, React.CSSProperties> = {
     lineHeight: 1.5,
   },
   category: {
-    marginBottom: '2rem',
+    marginBottom: '1.5rem',
+    backgroundColor: colors.surface,
+    border: `1px solid ${colors.surfaceBorder}`,
+    borderRadius: '16px',
+    padding: '1.5rem',
   },
   categoryTitle: {
-    fontSize: '1.1rem',
-    fontWeight: 600,
+    fontSize: '0.85rem',
+    fontWeight: 700,
     color: colors.green,
     margin: '0 0 0.75rem',
     textTransform: 'uppercase',
-    letterSpacing: '0.05em',
+    letterSpacing: '0.06em',
   },
   itemList: {
     display: 'flex',

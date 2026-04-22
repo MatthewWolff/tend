@@ -16,7 +16,7 @@ export const colors = {
 };
 
 export const fonts = {
-  body: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
+  body: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
 };
 
 export const TESTFLIGHT_URL = 'https://testflight.apple.com/join/HvuJgSBe';
