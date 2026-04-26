@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Book, Plug, Bell, Cloud, ChevronRight } from 'lucide-react';
+import { Book, Plug, Bell, Cloud, BatteryCharging, ChevronRight } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Layout } from '../components/Layout';
@@ -11,6 +11,7 @@ import gettingStartedMd from '../content/docs/getting-started.md?raw';
 import connectionsMd from '../content/docs/connections.md?raw';
 import remindersMd from '../content/docs/reminders.md?raw';
 import backupMd from '../content/docs/backup.md?raw';
+import socialEnergyMd from '../content/docs/social-energy.md?raw';
 
 interface DocEntry {
   slug: string;
@@ -48,6 +49,13 @@ const DOCS: DocEntry[] = [
     description: 'Cloud backup, restore on new device, data safety',
     icon: <Cloud size={20} strokeWidth={1.5} />,
     content: backupMd,
+  },
+  {
+    slug: 'social-energy',
+    title: 'Social Energy',
+    description: 'Fatigue detection, recovery blocks, presets, ADHD mode',
+    icon: <BatteryCharging size={20} strokeWidth={1.5} />,
+    content: socialEnergyMd,
   },
 ];
 

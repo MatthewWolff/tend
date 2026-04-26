@@ -57,6 +57,11 @@ const pages = [
     description: 'Cloud backup, restore on a new device, and data safety in Tend.',
   },
   {
+    path: '/docs/social-energy/',
+    title: 'Social Energy — Tend Docs',
+    description: 'How Tend detects social fatigue and auto-blocks recovery time. Presets, ADHD mode, and calendar integration.',
+  },
+  {
     path: '/privacy-policy/',
     title: 'Privacy Policy — Tend',
     description: 'Tend\'s privacy policy. Your data stays on your device. No analytics, no ads, no tracking.',

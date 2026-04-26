@@ -7,6 +7,12 @@ import {
   Users,
   SkipForward,
   ShieldCheck,
+  Tag,
+  Link2,
+  ClipboardList,
+  MapPin,
+  CheckSquare,
+  BatteryCharging,
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { colors, TESTFLIGHT_URL } from '../theme';
@@ -16,6 +22,7 @@ interface FeatureSection {
   title: string;
   description: string;
   details: string[];
+  comingSoon?: boolean;
 }
 
 const FEATURES: FeatureSection[] = [
@@ -90,6 +97,69 @@ const FEATURES: FeatureSection[] = [
     ],
   },
   {
+    icon: <Tag size={28} strokeWidth={1.5} />,
+    title: 'Tags',
+    description: 'Organize friends with custom labels like "Seattle," "Hiking," or "College." Filter and browse by tag to find exactly who you\'re looking for.',
+    details: [
+      'Create unlimited custom tags per friend',
+      'Filter the friends list by one or more tags',
+      'Suggested tags ranked by how often you use them',
+    ],
+  },
+  {
+    icon: <Link2 size={28} strokeWidth={1.5} />,
+    title: 'Friend Associations',
+    description: 'Link friends who know each other. See mutual connections on each profile so you can plan group hangouts naturally.',
+    details: [
+      'Associate any two friends with a single tap',
+      'View mutual connections on each friend\'s profile',
+      'Great for remembering who introduced you to whom',
+    ],
+  },
+  {
+    icon: <ClipboardList size={28} strokeWidth={1.5} />,
+    title: 'Change History',
+    description: 'Every change to a friend\'s profile — frequency updates, tier changes, skips, edits — is tracked in a detailed audit log.',
+    details: [
+      'Full timeline of all modifications per friend',
+      'Tracks who initiated changes and when',
+      'Visible in the Advanced section of each profile',
+    ],
+  },
+  {
+    icon: <MapPin size={28} strokeWidth={1.5} />,
+    title: 'Transit Time',
+    description: 'See how long it takes to reach a friend before you commit to plans. Estimated travel times by driving, transit, or walking.',
+    details: [
+      'Powered by Google Routes API',
+      'Choose your preferred travel mode and maps app',
+      'Shows travel time from home or current location',
+    ],
+  },
+  {
+    icon: <CheckSquare size={28} strokeWidth={1.5} />,
+    title: 'Batch Operations',
+    description: 'Select multiple friends at once to update frequencies, change tiers, add tags, or archive in bulk. No more one-at-a-time edits.',
+    details: [
+      'Multi-select mode in the Friends tab',
+      'Bulk update frequency, tier, or tags',
+      'Batch delete and restore with undo support',
+    ],
+  },
+  {
+    icon: <BatteryCharging size={28} strokeWidth={1.5} />,
+    title: 'Social Energy',
+    comingSoon: true,
+    description: 'Detects when you\'re socially over-committed and auto-blocks recovery time on your iOS calendar. Built for people who say yes too often.',
+    details: [
+      'Three tolerance presets: Recharge Often, Balanced, Always On',
+      'ADHD mode with lower thresholds for faster fatigue detection',
+      'Auto-blocks recovery mornings or half-days in your calendar',
+      'Smart nudges before you over-schedule',
+      'Dismiss any recovery block with one tap',
+    ],
+  },
+  {
     icon: <ShieldCheck size={28} strokeWidth={1.5} />,
     title: 'Private by Design',
     description: 'No analytics, no ads, no tracking. Your friendship data is yours alone.',
@@ -116,7 +186,12 @@ export function Features() {
           {FEATURES.map((feature, i) => (
             <div key={feature.title} style={styles.card}>
               <div style={styles.cardIcon}>{feature.icon}</div>
-              <h2 style={styles.cardTitle}>{feature.title}</h2>
+              <div style={styles.cardTitleRow}>
+                <h2 style={styles.cardTitle}>{feature.title}</h2>
+                {feature.comingSoon && (
+                  <span style={styles.comingSoonBadge}>Coming Soon</span>
+                )}
+              </div>
               <p style={styles.cardDesc}>{feature.description}</p>
               <ul style={styles.cardList}>
                 {feature.details.map((detail, j) => (
@@ -186,10 +261,27 @@ const styles: Record<string, React.CSSProperties> = {
     color: colors.green,
     marginBottom: '0.75rem',
   },
+  cardTitleRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    marginBottom: '0.5rem',
+  },
   cardTitle: {
     fontSize: '1.15rem',
     fontWeight: 600,
-    margin: '0 0 0.5rem',
+    margin: 0,
+  },
+  comingSoonBadge: {
+    fontSize: '0.65rem',
+    fontWeight: 700,
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
+    color: colors.bg,
+    backgroundColor: colors.green,
+    padding: '2px 8px',
+    borderRadius: '6px',
+    whiteSpace: 'nowrap' as const,
   },
   cardDesc: {
     fontSize: '0.95rem',

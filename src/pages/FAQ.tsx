@@ -82,6 +82,23 @@ const FAQ_DATA: FAQCategory[] = [
     ],
   },
   {
+    title: 'Social Energy',
+    items: [
+      {
+        question: 'What is Social Energy?',
+        answer: 'Social Energy is an optional feature that detects when you\'re socially over-committed based on your scheduled connections. When it detects fatigue patterns — too many consecutive social days, exceeding your weekly cap, or a packed weekend — it automatically blocks recovery time on your iOS calendar so you have space to recharge.',
+      },
+      {
+        question: 'How does the recovery day blocker work?',
+        answer: 'When Social Energy detects that you\'ve exceeded your social thresholds, it finds the next free day in your calendar and creates a recovery block — a calendar event labeled as recovery time. Blocks can be a morning (9 AM–1 PM), half-day (9 AM–5 PM), or full day depending on your preset. You can dismiss any recovery block with a single tap if you don\'t need it.',
+      },
+      {
+        question: 'What are the preset options?',
+        answer: 'There are three built-in presets. "Recharge Often" triggers recovery after 2 consecutive social days or 3 social days in a week — best for introverts or those with ADHD. "Balanced" triggers after 3 consecutive days or 4 in a week — a good default. "Always On" allows up to 5 consecutive days or 6 in a week — for highly social people who rarely need downtime. You can also enable ADHD Mode, which lowers all thresholds by 1 for faster fatigue detection.',
+      },
+    ],
+  },
+  {
     title: 'Troubleshooting',
     items: [
       {
