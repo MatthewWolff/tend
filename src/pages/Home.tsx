@@ -7,7 +7,8 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { colors, TESTFLIGHT_URL } from '../theme';
+import { colors, fonts, TESTFLIGHT_URL } from '../theme';
+import { useReveal } from '../useReveal';
 
 const iconProps = { size: 20, strokeWidth: 1.75 };
 
@@ -15,45 +16,69 @@ const features = [
   { icon: <Timer {...iconProps} />, title: 'Frequency-based', desc: 'Set how often you want to connect with each friend' },
   { icon: <WifiOff {...iconProps} />, title: 'Offline-first', desc: 'Works without internet — syncs when you\'re back online' },
   { icon: <Bell {...iconProps} />, title: 'Smart reminders', desc: 'Gentle nudges when it\'s time to reach out' },
-  { icon: <Layers {...iconProps} />, title: 'Relationship tiers', desc: 'Organize friends by closeness, from inner circle to casual' },
+  { icon: <Layers {...iconProps} />, title: 'Relationship circles', desc: 'Organize friends by closeness, from inner circle to casual' },
   { icon: <Calendar {...iconProps} />, title: 'Calendar sync', desc: 'Scheduled connections show up in your iOS calendar' },
   { icon: <ShieldCheck {...iconProps} />, title: 'Private by design', desc: 'Your data stays on your device — cloud backup optional' },
 ];
 
 export function Home() {
+  const revealRef = useReveal<HTMLDivElement>();
+
   return (
     <Layout>
-      <div style={styles.content}>
+      <div ref={revealRef} style={styles.content}>
+        {/* Hero */}
         <section style={styles.hero}>
-          <img
-            src="/tend/app-icon-256.png"
-            alt="Tend app icon"
-            style={styles.icon}
-          />
-          <h1 style={styles.title}>Tend</h1>
-          <p style={styles.subtitle}>
-            A personal relationship manager for iOS.
-          </p>
-          <p style={styles.tagline}>
+          <div className="reveal" style={styles.iconWrap}>
+            <img
+              src="/tend/app-icon-256.png"
+              alt="Tend app icon"
+              style={styles.icon}
+            />
+          </div>
+
+          <h1 className="reveal" style={styles.title}>
+            Tend your<br />friendships
+          </h1>
+
+          <p className="reveal" style={styles.subtitle}>
             For people who care deeply but forget easily.
           </p>
+
+          <p className="reveal" style={styles.tagline}>
+            A frequency-based relationship manager for iOS that replaces guilt with a gentle system.
+          </p>
+
           <a
+            className="reveal cta-button"
             href={TESTFLIGHT_URL}
-            style={styles.betaButton}
             target="_blank"
             rel="noopener noreferrer"
+            style={styles.betaButton}
           >
-            Join the Beta — iOS
+            Join the Beta
           </a>
+
+          <p className="reveal" style={styles.platform}>iOS only &middot; Free during beta</p>
         </section>
 
-        <section style={styles.features}>
-          {features.map((f) => (
-            <div key={f.title} style={styles.featureCard}>
-              <div style={styles.featureHeader}>
-                <span style={styles.featureIcon}>{f.icon}</span>
-                <p style={styles.featureTitle}>{f.title}</p>
-              </div>
+        {/* Divider */}
+        <div className="reveal" style={styles.divider}>
+          <div style={styles.dividerLine} />
+          <span style={styles.dividerDot} />
+          <div style={styles.dividerLine} />
+        </div>
+
+        {/* Features grid */}
+        <section className="reveal-stagger" style={styles.features}>
+          {features.map((f, i) => (
+            <div
+              key={f.title}
+              className="reveal"
+              style={{ ...styles.featureCard, '--i': i } as React.CSSProperties}
+            >
+              <div style={styles.featureIcon}>{f.icon}</div>
+              <p style={styles.featureTitle}>{f.title}</p>
               <p style={styles.featureDesc}>{f.desc}</p>
             </div>
           ))}
@@ -68,92 +93,114 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '0 1.5rem',
+    padding: '0 2rem',
   },
   hero: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
-    maxWidth: '640px',
-    paddingTop: 'clamp(3rem, 10vh, 6rem)',
+    maxWidth: '720px',
+    paddingTop: 'clamp(4rem, 14vh, 8rem)',
     paddingBottom: '3rem',
   },
+  iconWrap: {
+    marginBottom: '2rem',
+  },
   icon: {
-    width: '80px',
-    height: '80px',
-    borderRadius: '18px',
-    marginBottom: '1.5rem',
+    width: '88px',
+    height: '88px',
+    borderRadius: '22px',
+    boxShadow: `0 0 40px ${colors.greenGlow}, 0 2px 8px rgba(0,0,0,0.3)`,
   },
   title: {
-    fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-    fontWeight: 700,
-    letterSpacing: '-0.02em',
-    margin: '0 0 0.75rem',
-    lineHeight: 1.1,
+    fontFamily: fonts.display,
+    fontSize: 'clamp(2.75rem, 7vw, 4.5rem)',
+    fontWeight: 400,
+    letterSpacing: '-0.03em',
+    margin: '0 0 1.25rem',
+    lineHeight: 1.05,
+    color: colors.textPrimary,
   },
   subtitle: {
+    fontFamily: fonts.display,
+    fontStyle: 'italic',
     fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)',
-    color: colors.textSecondary,
-    margin: '0 0 0.5rem',
+    color: colors.green,
+    margin: '0 0 1rem',
     lineHeight: 1.5,
-    maxWidth: '480px',
+    fontWeight: 300,
   },
   tagline: {
-    fontSize: '0.95rem',
-    color: colors.textTertiary,
+    fontSize: '1rem',
+    color: colors.textSecondary,
     margin: '0 0 2.5rem',
-    lineHeight: 1.5,
-    maxWidth: '400px',
+    lineHeight: 1.6,
+    maxWidth: '440px',
   },
   betaButton: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    backgroundColor: colors.green,
-    color: '#000',
-    fontWeight: 600,
     fontSize: '1.05rem',
-    padding: '0.875rem 2rem',
-    borderRadius: '14px',
-    textDecoration: 'none',
-    marginBottom: '3rem',
+    padding: '0.9rem 2.5rem',
+    marginBottom: '1rem',
+  },
+  platform: {
+    fontSize: '0.8rem',
+    color: colors.textTertiary,
+    margin: 0,
+    letterSpacing: '0.02em',
+  },
+  divider: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    width: '100%',
+    maxWidth: '200px',
+    margin: '1.5rem 0 3rem',
+  },
+  dividerLine: {
+    flex: 1,
+    height: '1px',
+    background: `linear-gradient(to right, transparent, ${colors.surfaceBorder}, transparent)`,
+  },
+  dividerDot: {
+    width: '4px',
+    height: '4px',
+    borderRadius: '50%',
+    backgroundColor: colors.green,
+    boxShadow: `0 0 8px ${colors.green}`,
   },
   features: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
     gap: '1rem',
-    maxWidth: '640px',
+    maxWidth: '720px',
     width: '100%',
-    marginBottom: '3rem',
+    marginBottom: '5rem',
   },
   featureCard: {
     backgroundColor: colors.surface,
     border: `1px solid ${colors.surfaceBorder}`,
     borderRadius: '16px',
-    padding: '1.25rem',
-    textAlign: 'left' as const,
-  },
-  featureHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    marginBottom: '0.375rem',
+    padding: '1.5rem',
+    transition: 'border-color 0.3s, background-color 0.3s',
   },
   featureIcon: {
-    flexShrink: 0,
     color: colors.green,
+    marginBottom: '0.75rem',
+    opacity: 0.85,
   },
   featureTitle: {
-    fontSize: '0.95rem',
-    fontWeight: 600,
+    fontFamily: fonts.display,
+    fontSize: '1rem',
+    fontWeight: 500,
     color: colors.textPrimary,
-    margin: 0,
+    margin: '0 0 0.375rem',
+    letterSpacing: '-0.01em',
   },
   featureDesc: {
     fontSize: '0.85rem',
     color: colors.textTertiary,
     margin: 0,
-    lineHeight: 1.4,
+    lineHeight: 1.5,
   },
 };

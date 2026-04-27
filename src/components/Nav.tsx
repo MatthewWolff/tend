@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { colors, TESTFLIGHT_URL } from '../theme';
+import { colors, fonts, TESTFLIGHT_URL } from '../theme';
 
 const NAV_LINKS = [
   { to: '/features/', label: 'Features' },
@@ -25,7 +25,6 @@ export function Nav() {
   const location = useLocation();
   const isMobile = useIsMobile();
 
-  // Close menu on navigation
   useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
   const isActive = (to: string) =>
@@ -36,7 +35,9 @@ export function Nav() {
       <div style={styles.inner}>
         <Link to="/" style={styles.wordmark}>
           <img src="/tend/app-icon-256.png" alt="" style={styles.navIcon} />
-          Tend
+          <span style={{ fontFamily: fonts.display, fontWeight: 500, fontSize: '1.15rem', letterSpacing: '-0.02em' }}>
+            Tend
+          </span>
         </Link>
 
         {!isMobile && (
@@ -47,7 +48,7 @@ export function Nav() {
                 to={to}
                 style={{
                   ...styles.link,
-                  color: isActive(to) ? colors.green : colors.textTertiary,
+                  color: isActive(to) ? colors.textPrimary : colors.textTertiary,
                 }}
               >
                 {label}
@@ -57,8 +58,8 @@ export function Nav() {
         )}
 
         {!isMobile && (
-          <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" style={styles.cta}>
-            Get the Beta
+          <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" className="cta-button" style={styles.cta}>
+            Join Beta
           </a>
         )}
 
@@ -81,7 +82,7 @@ export function Nav() {
               to={to}
               style={{
                 ...styles.mobileLink,
-                color: isActive(to) ? colors.green : colors.textSecondary,
+                color: isActive(to) ? colors.textPrimary : colors.textSecondary,
               }}
             >
               {label}
@@ -91,9 +92,10 @@ export function Nav() {
             href={TESTFLIGHT_URL}
             target="_blank"
             rel="noopener noreferrer"
+            className="cta-button"
             style={styles.mobileCta}
           >
-            Get the Beta
+            Join Beta
           </a>
         </div>
       )}
@@ -106,54 +108,45 @@ const styles: Record<string, React.CSSProperties> = {
     position: 'sticky',
     top: 0,
     zIndex: 100,
-    backgroundColor: 'rgba(10, 15, 12, 0.9)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
+    backgroundColor: 'rgba(11, 14, 9, 0.85)',
+    backdropFilter: 'blur(16px) saturate(1.2)',
+    WebkitBackdropFilter: 'blur(16px) saturate(1.2)',
     borderBottom: `1px solid ${colors.surfaceBorder}`,
   },
   inner: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    maxWidth: '960px',
+    maxWidth: '1080px',
     margin: '0 auto',
-    padding: '0.75rem 1.5rem',
+    padding: '0.875rem 2rem',
   },
   wordmark: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem',
+    gap: '0.625rem',
     color: colors.textPrimary,
     textDecoration: 'none',
-    fontWeight: 700,
-    fontSize: '1.15rem',
-    letterSpacing: '-0.01em',
   },
   navIcon: {
-    width: '28px',
-    height: '28px',
-    borderRadius: '7px',
+    width: '30px',
+    height: '30px',
+    borderRadius: '8px',
   },
   links: {
     display: 'flex',
-    gap: '1.75rem',
+    gap: '2rem',
   },
   link: {
     textDecoration: 'none',
-    fontSize: '0.9rem',
+    fontSize: '0.875rem',
     fontWeight: 500,
+    letterSpacing: '0.01em',
     transition: 'color 0.2s',
   },
   cta: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    backgroundColor: colors.green,
-    color: '#000',
-    fontWeight: 600,
-    fontSize: '0.85rem',
+    fontSize: '0.8rem',
     padding: '0.5rem 1.25rem',
-    borderRadius: '10px',
-    textDecoration: 'none',
   },
   hamburger: {
     background: 'none',
@@ -164,7 +157,7 @@ const styles: Record<string, React.CSSProperties> = {
   mobileMenu: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '0.5rem 1.5rem 1rem',
+    padding: '0.75rem 2rem 1.25rem',
     gap: '0.25rem',
     borderTop: `1px solid ${colors.surfaceBorder}`,
   },
@@ -175,15 +168,9 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '0.75rem 0',
   },
   mobileCta: {
-    display: 'inline-flex',
     justifyContent: 'center',
-    backgroundColor: colors.green,
-    color: '#000',
-    fontWeight: 600,
     fontSize: '0.95rem',
     padding: '0.75rem 1.5rem',
-    borderRadius: '12px',
-    textDecoration: 'none',
     marginTop: '0.5rem',
   },
 };

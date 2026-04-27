@@ -1,22 +1,28 @@
 /**
- * Shared design tokens for the Tend marketing site.
- * All pages import from here — no hardcoded colors.
+ * Design tokens for the Tend marketing site.
+ *
+ * Aesthetic: Warm botanical night garden — dark, organic, alive.
+ * Typography: Fraunces (display serif) + DM Sans (body).
  */
 
 export const colors = {
-  bg: '#0A0F0C',
-  surface: '#1A1F1C',
-  surfaceHover: '#242A26',
-  surfaceBorder: '#363A37',
+  bg: '#0B0E09',
+  bgWarm: '#10130D',
+  surface: '#181C14',
+  surfaceHover: '#1F2319',
+  surfaceBorder: 'rgba(255, 255, 255, 0.06)',
+  surfaceBorderHover: 'rgba(255, 255, 255, 0.1)',
   green: '#32D74B',
-  greenPressed: '#28B83E',
-  textPrimary: '#FFFFFF',
-  textSecondary: '#EBEBF5',
-  textTertiary: 'rgba(235, 235, 245, 0.6)',
+  greenGlow: 'rgba(50, 215, 75, 0.15)',
+  greenFaint: 'rgba(50, 215, 75, 0.08)',
+  textPrimary: '#F2EFE8',
+  textSecondary: '#B5B0A6',
+  textTertiary: 'rgba(178, 173, 163, 0.6)',
 };
 
 export const fonts = {
-  body: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  display: '"Fraunces", "Georgia", serif',
+  body: '"DM Sans", -apple-system, BlinkMacSystemFont, sans-serif',
 };
 
 export const TESTFLIGHT_URL = 'https://testflight.apple.com/join/HvuJgSBe';

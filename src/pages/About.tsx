@@ -1,76 +1,72 @@
-import { Heart, Shield, Smartphone, Brain, Sprout } from 'lucide-react';
+import { Heart, Shield, Smartphone, Brain } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { colors, CONTACT_EMAIL, TESTFLIGHT_URL } from '../theme';
+import { colors, fonts, CONTACT_EMAIL, TESTFLIGHT_URL } from '../theme';
+import { useReveal } from '../useReveal';
 
 const values = [
   {
-    icon: <Brain size={24} strokeWidth={1.5} />,
+    icon: <Brain size={22} strokeWidth={1.5} />,
     title: 'Built for how your brain works',
-    desc: 'Traditional CRMs assume you have perfect memory. Tend assumes you don\'t — and that\'s okay.',
+    desc: 'Traditional CRMs assume perfect memory. Tend assumes you don\'t have it — and that\'s okay.',
   },
   {
-    icon: <Heart size={24} strokeWidth={1.5} />,
+    icon: <Heart size={22} strokeWidth={1.5} />,
     title: 'Relationships, not metrics',
     desc: 'Tend isn\'t about tracking KPIs. It\'s about noticing when someone you care about could use a call.',
   },
   {
-    icon: <Shield size={24} strokeWidth={1.5} />,
+    icon: <Shield size={22} strokeWidth={1.5} />,
     title: 'Your data, your device',
-    desc: 'Everything lives on your phone. Cloud backup is opt-in, encrypted, and deletable anytime. No ads, ever.',
+    desc: 'Everything lives on your phone. Cloud backup is opt-in, encrypted, and deletable anytime.',
   },
   {
-    icon: <Smartphone size={24} strokeWidth={1.5} />,
+    icon: <Smartphone size={22} strokeWidth={1.5} />,
     title: 'iOS-native experience',
     desc: 'Calendar integration, haptic feedback, dark mode, accessibility-first. It belongs on your iPhone.',
   },
 ];
 
 export function About() {
+  const revealRef = useReveal<HTMLDivElement>();
+
   return (
     <Layout title="About">
-      <div style={styles.content}>
-        {/* Hero */}
+      <div ref={revealRef} style={styles.content}>
         <section style={styles.hero}>
-          <div style={styles.heroIcon}>
-            <Sprout size={40} color={colors.green} strokeWidth={1.5} />
-          </div>
-          <h1 style={styles.title}>Tend your friendships</h1>
-          <p style={styles.subtitle}>
+          <h1 className="reveal" style={styles.title}>
+            The story behind<br />
+            <span style={{ color: colors.green, fontStyle: 'italic' }}>Tend</span>
+          </h1>
+          <p className="reveal" style={styles.subtitle}>
             A personal relationship manager for people who care deeply but forget easily.
           </p>
         </section>
 
-        {/* The Problem */}
-        <section style={styles.card}>
+        <section className="reveal" style={styles.card}>
           <h2 style={styles.cardTitle}>The problem</h2>
           <p style={styles.bodyText}>
             You care about your friends. You think about them all the time. But somehow, weeks turn into months, and you realize you haven't talked to someone who matters to you in way too long.
           </p>
           <p style={styles.bodyText}>
-            Social media creates the illusion of connection without the substance. Your brain — especially if it's wired a little differently — just isn't built to track who you talked to and when. And the guilt of "I should have called" doesn't actually help you call.
+            Social media creates the illusion of connection without the substance. Your brain — especially if it's wired a little differently — just isn't built to track who you talked to and when.
           </p>
         </section>
 
-        {/* The Solution */}
-        <section style={styles.card}>
+        <section className="reveal" style={styles.card}>
           <h2 style={styles.cardTitle}>How Tend helps</h2>
           <p style={styles.bodyText}>
-            Tend replaces guilt with a system. You tell it how often you want to connect with each friend, and it keeps track for you. When someone's overdue, you get a gentle nudge — not a guilt trip.
+            Tend replaces guilt with a system. Tell it how often you want to connect with each friend, and it keeps track for you. When someone's overdue, you get a gentle nudge — not a guilt trip.
           </p>
           <p style={styles.bodyText}>
-            Log a quick connection (a call, a text, a coffee), and the timer resets. It's frequency-based, not feeling-based. You don't have to remember who you haven't talked to — Tend remembers for you.
-          </p>
-          <p style={styles.bodyText}>
-            And when life gets busy, you can skip a cycle or snooze a reminder. No shame. The system adapts to you.
+            Log a quick connection, and the timer resets. It's frequency-based, not feeling-based. You don't have to remember — Tend remembers for you.
           </p>
         </section>
 
-        {/* Values */}
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>What we believe</h2>
+        <section className="reveal-stagger" style={styles.section}>
+          <h2 className="reveal" style={styles.sectionTitle}>What we believe</h2>
           <div style={styles.valueGrid}>
-            {values.map((v) => (
-              <div key={v.title} style={styles.valueCard}>
+            {values.map((v, i) => (
+              <div key={v.title} className="reveal" style={{ ...styles.valueCard, '--i': i } as React.CSSProperties}>
                 <div style={styles.valueIcon}>{v.icon}</div>
                 <h3 style={styles.valueTitle}>{v.title}</h3>
                 <p style={styles.valueDesc}>{v.desc}</p>
@@ -79,28 +75,30 @@ export function About() {
           </div>
         </section>
 
-        {/* Builder */}
-        <section style={styles.card}>
+        <section className="reveal" style={styles.card}>
           <h2 style={styles.cardTitle}>Built by</h2>
           <p style={styles.bodyText}>
-            Tend is built by <a href="https://github.com/MatthewWolff" style={styles.link} target="_blank" rel="noopener noreferrer">Matthew Wolff</a> — a software engineer who got tired of feeling bad about not keeping in touch with the people he cares about.
+            Tend is built by{' '}
+            <a href="https://github.com/MatthewWolff" className="glow-link" target="_blank" rel="noopener noreferrer">
+              Matthew Wolff
+            </a>{' '}
+            — a software engineer who got tired of feeling bad about not keeping in touch with the people he cares about.
           </p>
           <p style={styles.bodyText}>
             Questions, feedback, or just want to say hi?{' '}
-            <a href={`mailto:${CONTACT_EMAIL}`} style={styles.link}>{CONTACT_EMAIL}</a>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="glow-link">{CONTACT_EMAIL}</a>
           </p>
         </section>
 
-        {/* CTA */}
-        <section style={styles.cta}>
+        <section className="reveal" style={styles.cta}>
           <h2 style={styles.ctaTitle}>Ready to start tending?</h2>
           <a
             href={TESTFLIGHT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            style={styles.ctaButton}
+            className="cta-button"
           >
-            Join the Beta — iOS
+            Join the Beta
           </a>
         </section>
       </div>
@@ -112,33 +110,23 @@ const styles: Record<string, React.CSSProperties> = {
   content: {
     maxWidth: '720px',
     margin: '0 auto',
-    padding: '0 1.5rem 4rem',
+    padding: '0 2rem 5rem',
   },
   hero: {
-    paddingTop: 'clamp(2rem, 6vh, 4rem)',
-    paddingBottom: '2rem',
+    paddingTop: 'clamp(3rem, 8vh, 5rem)',
+    paddingBottom: '2.5rem',
     textAlign: 'center',
   },
-  heroIcon: {
-    width: '72px',
-    height: '72px',
-    borderRadius: '18px',
-    backgroundColor: colors.surface,
-    border: `1px solid ${colors.surfaceBorder}`,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 auto 1.25rem',
-  },
   title: {
-    fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-    fontWeight: 700,
-    letterSpacing: '-0.02em',
-    margin: '0 0 0.75rem',
-    lineHeight: 1.2,
+    fontFamily: fonts.display,
+    fontSize: 'clamp(2rem, 5vw, 3rem)',
+    fontWeight: 400,
+    letterSpacing: '-0.03em',
+    margin: '0 0 1rem',
+    lineHeight: 1.1,
   },
   subtitle: {
-    fontSize: '1.1rem',
+    fontSize: '1.05rem',
     color: colors.textSecondary,
     margin: 0,
     lineHeight: 1.6,
@@ -150,28 +138,32 @@ const styles: Record<string, React.CSSProperties> = {
     backgroundColor: colors.surface,
     border: `1px solid ${colors.surfaceBorder}`,
     borderRadius: '16px',
-    padding: '1.75rem',
+    padding: '2rem',
     marginBottom: '1.25rem',
   },
   cardTitle: {
+    fontFamily: fonts.display,
     fontSize: '1.2rem',
-    fontWeight: 600,
+    fontWeight: 500,
     margin: '0 0 0.75rem',
     color: colors.textPrimary,
+    letterSpacing: '-0.01em',
   },
   section: {
     marginBottom: '1.25rem',
   },
   sectionTitle: {
+    fontFamily: fonts.display,
     fontSize: '1.2rem',
-    fontWeight: 600,
+    fontWeight: 500,
     margin: '0 0 1rem',
     color: colors.textPrimary,
+    letterSpacing: '-0.01em',
   },
   bodyText: {
     fontSize: '0.95rem',
     color: colors.textSecondary,
-    lineHeight: 1.7,
+    lineHeight: 1.75,
     margin: '0 0 0.75rem',
   },
   valueGrid: {
@@ -184,46 +176,37 @@ const styles: Record<string, React.CSSProperties> = {
     border: `1px solid ${colors.surfaceBorder}`,
     borderRadius: '16px',
     padding: '1.5rem',
+    transition: 'border-color 0.3s',
   },
   valueIcon: {
     color: colors.green,
     marginBottom: '0.75rem',
+    opacity: 0.85,
   },
   valueTitle: {
+    fontFamily: fonts.display,
     fontSize: '1rem',
-    fontWeight: 600,
-    margin: '0 0 0.5rem',
+    fontWeight: 500,
+    margin: '0 0 0.375rem',
+    letterSpacing: '-0.01em',
   },
   valueDesc: {
-    fontSize: '0.9rem',
+    fontSize: '0.875rem',
     color: colors.textTertiary,
     margin: 0,
     lineHeight: 1.5,
   },
-  link: {
-    color: colors.green,
-    textDecoration: 'none',
-  },
   cta: {
     textAlign: 'center',
-    padding: '2.5rem 0',
+    padding: '3rem 0',
     borderTop: `1px solid ${colors.surfaceBorder}`,
-    marginTop: '1rem',
+    marginTop: '1.5rem',
   },
   ctaTitle: {
+    fontFamily: fonts.display,
     fontSize: '1.5rem',
-    fontWeight: 700,
-    margin: '0 0 1.25rem',
-  },
-  ctaButton: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    backgroundColor: colors.green,
-    color: '#000',
-    fontWeight: 600,
-    fontSize: '1.05rem',
-    padding: '0.875rem 2rem',
-    borderRadius: '14px',
-    textDecoration: 'none',
+    fontWeight: 400,
+    margin: '0 0 1.5rem',
+    letterSpacing: '-0.02em',
   },
 };

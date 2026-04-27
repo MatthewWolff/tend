@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { colors } from '../theme';
+import { colors, fonts } from '../theme';
+import { useReveal } from '../useReveal';
 
 interface FAQItem {
   question: string;
@@ -40,23 +41,23 @@ const FAQ_DATA: FAQCategory[] = [
     items: [
       {
         question: 'What are Relationship Circles?',
-        answer: 'Relationship Circles are four tiers that organize your friends by closeness: Inner Circle (most frequent contact), Close Friends, Regulars, and Casual. Each tier has a default connection frequency, but you can customize it per friend.',
+        answer: 'Relationship Circles are four tiers that organize your friends by closeness: Inner Circle, Close Friends, Regulars, and Casual. Each tier has a default connection frequency, but you can customize it per friend.',
       },
       {
         question: 'How do reminders work?',
-        answer: 'Tend calculates when each friend is "due" based on your last connection and the frequency you set. When someone becomes overdue, you get a notification. Reminders respect your quiet hours and won\'t spam you.',
+        answer: 'Tend calculates when each friend is "due" based on your last connection and the frequency you set. When someone becomes overdue, you get a notification. Reminders respect your quiet hours.',
       },
       {
         question: 'Can I import my contacts?',
-        answer: 'Yes! Tap "Import from Contacts" to select friends from your iOS address book. Tend stores the link so you can sync updated contact info later. No contact permission is required for the initial import — iOS handles it through the system picker.',
+        answer: 'Yes! Tap "Import from Contacts" to select friends from your iOS address book. No contact permission is required for the initial import — iOS handles it through the system picker.',
       },
       {
         question: 'What\'s the Skip feature?',
-        answer: 'Skip advances a friend\'s due date by one full frequency cycle without logging a connection. It\'s for when you know you\'re not going to reach out this cycle but don\'t want to be reminded. You get a 5-second undo in case you tap by accident.',
+        answer: 'Skip advances a friend\'s due date by one full frequency cycle without logging a connection. You get a 5-second undo in case you tap by accident.',
       },
       {
         question: 'Does Tend sync with my calendar?',
-        answer: 'Yes. When you schedule a future connection, it can automatically create an event in your iOS calendar with the friend\'s name, time, and location. You can also tap "Sync Now" in Settings to resync all upcoming events.',
+        answer: 'Yes. When you schedule a future connection, it creates an event in your iOS calendar with the friend\'s name, time, and location. Tap "Sync Now" in Settings to resync all upcoming events.',
       },
     ],
   },
@@ -65,19 +66,19 @@ const FAQ_DATA: FAQCategory[] = [
     items: [
       {
         question: 'Where is my data stored?',
-        answer: 'All data is stored locally on your device in a SQLite database. Cloud backup is optional — if you enable it, your database is encrypted and uploaded to Supabase (a secure cloud platform). You can delete your cloud data at any time.',
+        answer: 'All data is stored locally on your device in SQLite. Cloud backup is optional — if enabled, your database is encrypted and uploaded to Supabase. You can delete cloud data at any time.',
       },
       {
         question: 'Do you track or sell my data?',
-        answer: 'No. Tend has no analytics, no ads, and no third-party tracking. The only network calls are for authentication (Google/Apple sign-in) and optional cloud backup. Your friendship data never leaves your device unless you enable backup.',
+        answer: 'No. Tend has no analytics, no ads, and no third-party tracking. The only network calls are for authentication and optional cloud backup.',
       },
       {
         question: 'What happens if I delete my account?',
-        answer: 'All cloud data is permanently deleted, including backups. Your local data is erased from the device. This action cannot be undone.',
+        answer: 'All cloud data is permanently deleted, including backups. Your local data is erased from the device. This cannot be undone.',
       },
       {
         question: 'How does cloud backup work?',
-        answer: 'Tend offers three backup slots: continuous sync (every 30 seconds), daily snapshot, and manual backup. All are encrypted in transit and at rest. You can restore from any slot on a new device after signing in.',
+        answer: 'Tend offers three backup types: continuous sync (every 30 seconds), daily snapshot, and manual backup. All are encrypted in transit and at rest.',
       },
     ],
   },
@@ -86,15 +87,15 @@ const FAQ_DATA: FAQCategory[] = [
     items: [
       {
         question: 'What is Social Energy?',
-        answer: 'Social Energy is an optional feature that detects when you\'re socially over-committed based on your scheduled connections. When it detects fatigue patterns — too many consecutive social days, exceeding your weekly cap, or a packed weekend — it automatically blocks recovery time on your iOS calendar so you have space to recharge.',
+        answer: 'Social Energy detects when you\'re socially over-committed based on your connections. When it detects fatigue patterns — too many consecutive social days, exceeding your weekly cap, or a packed weekend — it blocks recovery time on your iOS calendar.',
       },
       {
-        question: 'How does the recovery day blocker work?',
-        answer: 'When Social Energy detects that you\'ve exceeded your social thresholds, it finds the next free day in your calendar and creates a recovery block — a calendar event labeled as recovery time. Blocks can be a morning (9 AM–1 PM), half-day (9 AM–5 PM), or full day depending on your preset. You can dismiss any recovery block with a single tap if you don\'t need it.',
+        question: 'How does the recovery blocker work?',
+        answer: 'When Social Energy detects you\'ve exceeded your thresholds, it finds the next free day and creates a recovery block on your calendar. Blocks can be half-day or full day depending on your preset. Dismiss any block with a single tap.',
       },
       {
         question: 'What are the preset options?',
-        answer: 'There are three built-in presets. "Recharge Often" triggers recovery after 2 consecutive social days or 3 social days in a week — best for introverts or those with ADHD. "Balanced" triggers after 3 consecutive days or 4 in a week — a good default. "Always On" allows up to 5 consecutive days or 6 in a week — for highly social people who rarely need downtime. You can also enable ADHD Mode, which lowers all thresholds by 1 for faster fatigue detection.',
+        answer: '"Recharge Often" triggers recovery after 2 consecutive social days or 3 in a week — best for introverts. "Balanced" triggers after 3 days or 4 in a week. "Always On" allows up to 5 consecutive days or 6 in a week. Enable Extra Recovery to lower all thresholds by 1.',
       },
     ],
   },
@@ -103,15 +104,15 @@ const FAQ_DATA: FAQCategory[] = [
     items: [
       {
         question: 'My notifications aren\'t working',
-        answer: 'Check that notifications are enabled in iOS Settings > Tend > Notifications. Also verify that notification settings are turned on in Tend\'s Settings tab. Notifications respect quiet hours — check that your current time isn\'t in the quiet window.',
+        answer: 'Check that notifications are enabled in iOS Settings > Tend > Notifications. Also verify notification settings in Tend\'s Settings tab. Notifications respect quiet hours.',
       },
       {
         question: 'Calendar events aren\'t showing up',
-        answer: 'Make sure Calendar Sync is enabled in Settings. If events were synced on another device, tap "Sync Now" to recreate them on this device. Check that Tend has calendar permission in iOS Settings > Privacy > Calendars.',
+        answer: 'Make sure Calendar Sync is enabled in Settings. Tap "Sync Now" to recreate events. Check that Tend has calendar permission in iOS Settings > Privacy > Calendars.',
       },
       {
         question: 'How do I restore from a backup?',
-        answer: 'Sign in with the same account you used to create the backup. Tend will detect existing backups and offer to restore. Choose the most recent backup slot (sync, snapshot, or manual). After restore, your data will appear as it was when the backup was created.',
+        answer: 'Sign in with the same account. Tend detects existing backups and offers to restore. Choose the most recent backup slot.',
       },
     ],
   },
@@ -121,7 +122,7 @@ function AccordionItem({ item }: { item: FAQItem }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div style={{ ...styles.item, borderColor: colors.surfaceBorder }}>
+    <div style={{ ...styles.item, borderColor: open ? colors.surfaceBorderHover : colors.surfaceBorder }}>
       <button
         style={styles.question}
         onClick={() => setOpen(!open)}
@@ -129,11 +130,11 @@ function AccordionItem({ item }: { item: FAQItem }) {
       >
         <span style={styles.questionText}>{item.question}</span>
         <ChevronDown
-          size={18}
+          size={16}
           color={colors.textTertiary}
           style={{
             transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-            transition: 'transform 0.2s',
+            transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
             flexShrink: 0,
           }}
         />
@@ -148,26 +149,34 @@ function AccordionItem({ item }: { item: FAQItem }) {
 }
 
 export function FAQ() {
+  const revealRef = useReveal<HTMLDivElement>();
+
   return (
     <Layout title="FAQ">
-      <div style={styles.content}>
+      <div ref={revealRef} style={styles.content}>
         <section style={styles.hero}>
-          <h1 style={styles.title}>Frequently Asked Questions</h1>
-          <p style={styles.subtitle}>
+          <h1 className="reveal" style={styles.title}>Frequently asked questions</h1>
+          <p className="reveal" style={styles.subtitle}>
             Everything you need to know about Tend.
           </p>
         </section>
 
-        {FAQ_DATA.map((category) => (
-          <section key={category.title} style={styles.category}>
-            <h2 style={styles.categoryTitle}>{category.title}</h2>
-            <div style={styles.itemList}>
-              {category.items.map((item) => (
-                <AccordionItem key={item.question} item={item} />
-              ))}
-            </div>
-          </section>
-        ))}
+        <div className="reveal-stagger">
+          {FAQ_DATA.map((category, i) => (
+            <section
+              key={category.title}
+              className="reveal"
+              style={{ ...styles.category, '--i': i } as React.CSSProperties}
+            >
+              <h2 style={styles.categoryTitle}>{category.title}</h2>
+              <div>
+                {category.items.map((item) => (
+                  <AccordionItem key={item.question} item={item} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
       </div>
     </Layout>
   );
@@ -177,48 +186,45 @@ const styles: Record<string, React.CSSProperties> = {
   content: {
     maxWidth: '720px',
     margin: '0 auto',
-    padding: '0 1.5rem 4rem',
+    padding: '0 2rem 5rem',
   },
   hero: {
-    paddingTop: 'clamp(2rem, 6vh, 4rem)',
-    paddingBottom: '2rem',
+    paddingTop: 'clamp(3rem, 8vh, 5rem)',
+    paddingBottom: '2.5rem',
     textAlign: 'center',
   },
   title: {
+    fontFamily: fonts.display,
     fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-    fontWeight: 700,
+    fontWeight: 400,
     letterSpacing: '-0.02em',
     margin: '0 0 0.75rem',
-    lineHeight: 1.2,
+    lineHeight: 1.15,
   },
   subtitle: {
-    fontSize: '1.1rem',
+    fontSize: '1.05rem',
     color: colors.textSecondary,
     margin: 0,
     lineHeight: 1.5,
   },
   category: {
-    marginBottom: '1.5rem',
+    marginBottom: '1.25rem',
     backgroundColor: colors.surface,
     border: `1px solid ${colors.surfaceBorder}`,
     borderRadius: '16px',
-    padding: '1.5rem',
+    padding: '1.5rem 1.75rem',
   },
   categoryTitle: {
-    fontSize: '0.85rem',
+    fontSize: '0.7rem',
     fontWeight: 700,
     color: colors.green,
     margin: '0 0 0.75rem',
     textTransform: 'uppercase',
-    letterSpacing: '0.06em',
-  },
-  itemList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0',
+    letterSpacing: '0.1em',
   },
   item: {
     borderBottom: '1px solid',
+    transition: 'border-color 0.2s',
   },
   question: {
     display: 'flex',
@@ -226,26 +232,26 @@ const styles: Record<string, React.CSSProperties> = {
     justifyContent: 'space-between',
     gap: '1rem',
     width: '100%',
-    padding: '1rem 0',
+    padding: '0.875rem 0',
     background: 'none',
     border: 'none',
     cursor: 'pointer',
     textAlign: 'left',
     color: colors.textPrimary,
-    fontFamily: 'inherit',
+    fontFamily: fonts.body,
   },
   questionText: {
-    fontSize: '1rem',
+    fontSize: '0.95rem',
     fontWeight: 500,
     lineHeight: 1.4,
   },
   answer: {
-    paddingBottom: '1rem',
+    paddingBottom: '0.875rem',
   },
   answerText: {
-    fontSize: '0.95rem',
+    fontSize: '0.9rem',
     color: colors.textSecondary,
-    lineHeight: 1.6,
+    lineHeight: 1.7,
     margin: 0,
   },
 };
