@@ -62,6 +62,11 @@ const pages = [
     description: 'How Tend detects social fatigue and auto-blocks recovery time. Presets, ADHD mode, and calendar integration.',
   },
   {
+    path: '/docs/intelligence/',
+    title: 'Intelligence — Tend Docs',
+    description: 'How Tend learns and adapts. Actual Pattern tier, tier crossing prompts, learned friend associations, and smart tier suggestions.',
+  },
+  {
     path: '/privacy-policy/',
     title: 'Privacy Policy — Tend',
     description: 'Tend\'s privacy policy. Your data stays on your device. No analytics, no ads, no tracking.',
