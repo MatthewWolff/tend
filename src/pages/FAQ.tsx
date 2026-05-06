@@ -59,6 +59,23 @@ const FAQ_DATA: FAQCategory[] = [
         question: 'Does Tend sync with my calendar?',
         answer: 'Yes. When you schedule a future connection, it creates an event in your iOS calendar with the friend\'s name, time, and location. Tap "Sync Now" in Settings to resync all upcoming events.',
       },
+      {
+        question: 'Will my events move when I travel?',
+        answer: 'No. Each event is anchored to the timezone you set when you create it, so a 6 PM dinner in New York stays a 6 PM dinner in New York — even if you\'re in Los Angeles when the reminder fires. You can pick a timezone per event in the connection form; it defaults to your device\'s current timezone.',
+      },
+    ],
+  },
+  {
+    title: 'Intelligence',
+    items: [
+      {
+        question: 'Does Tend watch how I actually use it?',
+        answer: 'Yes, locally. Tend computes an "Actual Pattern" tier for each friend from your recent connection history (a 90-day rolling window) and compares it to the target tier you set. If the two drift apart — say, you put someone in the Inner Circle but have only connected monthly — Tend shows a one-time prompt asking whether to adjust your target or keep it. Nothing leaves your device.',
+      },
+      {
+        question: 'Does Tend learn which friends I see together?',
+        answer: 'Yes. After a few group hangouts with the same pair, Tend quietly proposes linking them as associated friends. Suggestions appear on profiles, after saving a group event, and as "Often with Alice" sub-labels in the friend picker. The learning is passive and local — nothing is uploaded — and you can opt out or clear what Tend has learned from Settings when you want to.',
+      },
     ],
   },
   {
@@ -71,6 +88,10 @@ const FAQ_DATA: FAQCategory[] = [
       {
         question: 'Do you track or sell my data?',
         answer: 'No. Tend has no analytics, no ads, and no third-party tracking. The only network calls are for authentication and optional cloud backup.',
+      },
+      {
+        question: 'What happens if I delete a friend by accident?',
+        answer: 'Deleted friends are not gone for 30 days. They land in Recently Deleted (Settings → Data & Backup → Recently Deleted) with one-tap restore. Their connections, events, and tags come back with them — a full recovery within the window. A 5-second undo toast also appears immediately after most destructive actions, including single and batch deletes.',
       },
       {
         question: 'What happens if I delete my account?',
