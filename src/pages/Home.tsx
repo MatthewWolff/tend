@@ -5,6 +5,9 @@ import {
   Layers,
   Calendar,
   ShieldCheck,
+  Sparkles,
+  Link2,
+  BatteryCharging,
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { colors, fonts, TESTFLIGHT_URL } from '../theme';
@@ -19,6 +22,26 @@ const features = [
   { icon: <Layers {...iconProps} />, title: 'Relationship circles', desc: 'Organize friends by closeness, from inner circle to casual' },
   { icon: <Calendar {...iconProps} />, title: 'Calendar sync', desc: 'Scheduled connections show up in your iOS calendar' },
   { icon: <ShieldCheck {...iconProps} />, title: 'Private by design', desc: 'Your data stays on your device — cloud backup optional' },
+];
+
+const intelligenceIconProps = { size: 22, strokeWidth: 1.5 };
+
+const intelligenceBlocks = [
+  {
+    icon: <Sparkles {...intelligenceIconProps} />,
+    title: 'A mirror for how you actually connect',
+    desc: 'Tend tracks your real hangout rhythm and reflects it back. When your actual pattern drifts from your target tier, it gently asks whether to adjust — so your goals stay honest instead of aspirational.',
+  },
+  {
+    icon: <Link2 {...intelligenceIconProps} />,
+    title: 'Learns which friends come together',
+    desc: 'After a few shared hangouts, Tend notices which friends you see as a group and suggests linking them — so next time you\'re planning something, it remembers who goes with who.',
+  },
+  {
+    icon: <BatteryCharging {...intelligenceIconProps} />,
+    title: 'Watches your social energy',
+    desc: 'Too many plans in a row? Tend notices, nudges you before you over-commit, and quietly blocks recovery time on your calendar. Extra Recovery mode lowers the thresholds for neurodivergent users who need more breathing room.',
+  },
 ];
 
 export function Home() {
@@ -82,6 +105,30 @@ export function Home() {
               <p style={styles.featureDesc}>{f.desc}</p>
             </div>
           ))}
+        </section>
+
+        {/* Intelligence section — what makes Tend different */}
+        <section className="reveal reveal-stagger" style={styles.intelligence}>
+          <p className="reveal" style={styles.intelligenceEyebrow}>Quietly adaptive</p>
+          <h2 className="reveal" style={styles.intelligenceTitle}>
+            It <span style={{ color: colors.green }}>learns</span> how you tend.
+          </h2>
+          <p className="reveal" style={styles.intelligenceIntro}>
+            Tend isn’t a guilt generator. It reflects your actual patterns back to you and adjusts as you go.
+          </p>
+          <div style={styles.intelligenceGrid}>
+            {intelligenceBlocks.map((block, i) => (
+              <div
+                key={block.title}
+                className="reveal"
+                style={{ ...styles.intelligenceCard, '--i': i } as React.CSSProperties}
+              >
+                <div style={styles.intelligenceIcon}>{block.icon}</div>
+                <p style={styles.intelligenceBlockTitle}>{block.title}</p>
+                <p style={styles.intelligenceBlockDesc}>{block.desc}</p>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </Layout>
@@ -175,7 +222,7 @@ const styles: Record<string, React.CSSProperties> = {
     gap: '1rem',
     maxWidth: '720px',
     width: '100%',
-    marginBottom: '5rem',
+    marginBottom: '4rem',
   },
   featureCard: {
     backgroundColor: colors.surface,
@@ -202,5 +249,67 @@ const styles: Record<string, React.CSSProperties> = {
     color: colors.textTertiary,
     margin: 0,
     lineHeight: 1.5,
+  },
+  intelligence: {
+    maxWidth: '720px',
+    width: '100%',
+    margin: '0 auto 5rem',
+    textAlign: 'center',
+  },
+  intelligenceEyebrow: {
+    fontFamily: fonts.body,
+    fontSize: '0.8rem',
+    letterSpacing: '0.12em',
+    textTransform: 'uppercase',
+    color: colors.green,
+    margin: '0 0 0.75rem',
+    opacity: 0.85,
+  },
+  intelligenceTitle: {
+    fontFamily: fonts.display,
+    fontSize: 'clamp(1.9rem, 4.5vw, 2.75rem)',
+    fontWeight: 400,
+    letterSpacing: '-0.02em',
+    margin: '0 0 1rem',
+    lineHeight: 1.15,
+    color: colors.textPrimary,
+  },
+  intelligenceIntro: {
+    fontSize: '1rem',
+    color: colors.textSecondary,
+    margin: '0 auto 2.5rem',
+    maxWidth: '520px',
+    lineHeight: 1.6,
+  },
+  intelligenceGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    textAlign: 'left',
+  },
+  intelligenceCard: {
+    backgroundColor: colors.surface,
+    border: `1px solid ${colors.surfaceBorder}`,
+    borderRadius: '16px',
+    padding: '1.5rem 1.75rem',
+  },
+  intelligenceIcon: {
+    color: colors.green,
+    marginBottom: '0.75rem',
+    opacity: 0.85,
+  },
+  intelligenceBlockTitle: {
+    fontFamily: fonts.display,
+    fontSize: '1.1rem',
+    fontWeight: 500,
+    color: colors.textPrimary,
+    margin: '0 0 0.5rem',
+    letterSpacing: '-0.01em',
+  },
+  intelligenceBlockDesc: {
+    fontSize: '0.92rem',
+    color: colors.textSecondary,
+    margin: 0,
+    lineHeight: 1.6,
   },
 };
