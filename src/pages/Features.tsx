@@ -1,6 +1,7 @@
 import {
   Layers, Bell, Zap, Calendar, WifiOff, Users, SkipForward,
   ShieldCheck, Tag, Link2, ClipboardList, MapPin, CheckSquare, BatteryCharging,
+  Sparkles, LifeBuoy, Accessibility,
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { colors, fonts, TESTFLIGHT_URL } from '../theme';
@@ -21,17 +22,50 @@ const FEATURES: FeatureSection[] = [
     details: [
       'Inner Circle, Close Friends, Regulars, and Casual',
       'Set custom frequencies per friend (every 3 days, every 2 weeks, etc.)',
-      'Smart tier suggestions based on your actual connection patterns',
+      'Four-question tier quiz calibrates boundaries to your life',
+    ],
+  },
+  {
+    icon: <Sparkles size={26} strokeWidth={1.5} />,
+    title: 'Adaptive Tier System',
+    description: 'Tend is a mirror for how you actually connect. It watches your real rhythm and reflects it back as an Actual Pattern tier. When that drifts from the target tier you set, Tend asks whether to adjust — so your goals stay honest instead of aspirational.',
+    details: [
+      'Actual Pattern tier derived from recent connection history',
+      'Tier-crossing prompts surface drift at the moment it happens',
+      'Smart tier suggestions when you change a friend\'s frequency',
+    ],
+  },
+  {
+    icon: <Link2 size={26} strokeWidth={1.5} />,
+    title: 'Learned Friend Associations',
+    description: 'After 3+ group hangouts with the same pair, Tend notices which friends you tend to see together and quietly suggests linking them. Accept, dismiss, or turn off the learning entirely — and manually link any two friends whenever you want.',
+    details: [
+      'Passive learning from shared hangouts — nothing uploaded',
+      '"Often with Alice" sub-labels in the friend picker when planning',
+      'Suggestions surface on profiles and after saving group events',
+      'Opt out or clear learned data from Settings',
+    ],
+  },
+  {
+    icon: <BatteryCharging size={26} strokeWidth={1.5} />,
+    title: 'Social Energy',
+    description: 'Detects when you\'re socially over-committed, nudges you before you over-schedule, and auto-blocks recovery time on your calendar.',
+    details: [
+      'Three presets: Recharge Often, Balanced, Always On',
+      'Extra Recovery: lower thresholds for neurodivergent needs',
+      'Auto-blocks Recovery Block events in your iOS calendar',
+      'Smart density nudges before you save a crowded week',
     ],
   },
   {
     icon: <Bell size={26} strokeWidth={1.5} />,
     title: 'Smart Reminders',
-    description: 'Gentle, frequency-based nudges that respect your schedule. No spam, no guilt — just timely prompts for the friends who matter.',
+    description: 'Gentle, frequency-based nudges that respect your schedule. No spam, no guilt — just timely prompts for the friends who matter — and an in-app Notification Center that lets you snooze, log, or dismiss with a swipe.',
     details: [
       'Reminders based on your chosen frequency, not arbitrary timers',
       'Quiet hours respect your sleep and work schedule',
       'Skip or snooze when life gets busy',
+      'Birthday reminders with configurable advance warning per tier',
     ],
   },
   {
@@ -47,10 +81,11 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <Calendar size={26} strokeWidth={1.5} />,
     title: 'Calendar Sync',
-    description: 'Scheduled connections automatically appear in your iOS calendar with the friend\'s name, time, and location.',
+    description: 'Scheduled connections automatically appear in your iOS calendar with the friend\'s name, time, and location. Events are timezone-aware — a 6 PM dinner in New York stays a 6 PM dinner even when you\'re on the road.',
     details: [
       'Two-way sync with iOS Calendar',
       'Configurable reminders (15min, 30min, 1hr before)',
+      'Per-event timezone locks the clock to the hangout\'s city',
       'One-tap Sync Now to resync everything',
     ],
   },
@@ -67,11 +102,12 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <Users size={26} strokeWidth={1.5} />,
     title: 'Contact Sync',
-    description: 'Import friends from your contacts and keep their info in sync. Tend only asks for access when you need it.',
+    description: 'Import friends from your contacts and keep their info in sync. Tend only asks for access when you need it. On a big import, due dates are auto-spread across your frequency window so day one doesn\'t flood you with "reach out" prompts.',
     details: [
       'Import from iOS Contacts with one tap',
       'Sync updated phone numbers, birthdays, and addresses',
       'Full or limited access — your choice',
+      'Auto-spread due dates on bulk imports (10+ friends)',
     ],
   },
   {
@@ -95,16 +131,6 @@ const FEATURES: FeatureSection[] = [
     ],
   },
   {
-    icon: <Link2 size={26} strokeWidth={1.5} />,
-    title: 'Friend Associations',
-    description: 'Link friends who know each other. See mutual connections on each profile for group hangout ideas.',
-    details: [
-      'Associate any two friends with a single tap',
-      'View mutual connections on each profile',
-      'Great for remembering who introduced you to whom',
-    ],
-  },
-  {
     icon: <ClipboardList size={26} strokeWidth={1.5} />,
     title: 'Change History',
     description: 'Every change — frequency updates, tier changes, skips — is tracked in a detailed audit log.',
@@ -117,10 +143,10 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <MapPin size={26} strokeWidth={1.5} />,
     title: 'Transit Time',
-    description: 'See travel time to a friend before you commit to plans. Driving, transit, or walking.',
+    description: 'See travel time to a friend before you commit to plans. Driving, transit, or walking — and when you tap directions, Tend opens the maps app you actually use.',
     details: [
       'Powered by Google Routes API',
-      'Choose your preferred travel mode and maps app',
+      'Pick your preferred maps app: Apple, Google, Waze, or ask every time',
       'Travel time from home or current location',
     ],
   },
@@ -135,14 +161,25 @@ const FEATURES: FeatureSection[] = [
     ],
   },
   {
-    icon: <BatteryCharging size={26} strokeWidth={1.5} />,
-    title: 'Social Energy',
-    description: 'Detects when you\'re socially over-committed and auto-blocks recovery time on your calendar.',
+    icon: <LifeBuoy size={26} strokeWidth={1.5} />,
+    title: 'Data Safety Net',
+    description: 'Nothing disappears in a tap. Deleted friends stay in Recently Deleted for 30 days, every destructive action has a 5-second undo, and Tend checks for newer backups every time you open the app on a new device.',
     details: [
-      'Three presets: Recharge Often, Balanced, Always On',
-      'Extra Recovery mode with lower thresholds',
-      'Auto-blocks recovery time in your iOS calendar',
-      'Smart nudges before you over-schedule',
+      'Recently Deleted: 30-day grace period for removed friends',
+      '5-second undo toast after skip, delete, and batch operations',
+      'Stale-DB detection prompts "Use newer backup?" on new devices',
+      'Per-friend change history in Advanced Details',
+    ],
+  },
+  {
+    icon: <Accessibility size={26} strokeWidth={1.5} />,
+    title: 'Built for ADHD & Accessibility',
+    description: 'Tend is designed for people who care deeply but forget easily — and built with the iOS accessibility stack so it fits however you prefer to use your phone.',
+    details: [
+      'Dynamic Type: text scales with your iOS Text Size setting',
+      'Reduce Motion: animations honor iOS motion preferences',
+      'VoiceOver-labeled controls across the app',
+      'ADHD-friendly defaults: gentle reminders, recovery blocks, no streaks',
     ],
   },
   {
