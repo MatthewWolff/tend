@@ -44,7 +44,7 @@ If a doc or page says something different from what's listed here, the other pag
 
 **Recovery Block** — the auto-generated iOS Calendar event that blocks recovery time when Social Energy triggers. Don't call this a "rest day" (early drafts used that phrasing; drop it).
 
-**Extra Recovery** — the mode that lowers all Social Energy thresholds by one. Don't call this "ADHD Mode" in user-facing copy — the feature is for anyone who wants more breathing room, though the motivation is neurodivergent needs. The app's UI label is "Extra Recovery" across the board. **Known drift:** `docs/social-energy.md` still uses "ADHD Mode"; that file is on the list to reconcile.
+**Extra Recovery** — the mode that lowers all Social Energy thresholds by one. Don't call this "ADHD Mode" in user-facing copy — the feature is for anyone who wants more breathing room, though the motivation is neurodivergent needs. The app's UI label is "Extra Recovery" across the board.
 
 **Social Density Nudge** — the pre-save warning when you're about to add a connection to an already-dense day. Informational only; doesn't block saving. Component file is `SocialDensityNudge.tsx`.
 

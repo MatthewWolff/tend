@@ -34,11 +34,11 @@ Social Energy is **off by default** — it never creates calendar events until y
 - **Balanced** is a good default for most people.
 - **Always On** is for highly social people who rarely need downtime but want a safety net.
 
-## ADHD mode
+## Extra Recovery
 
-Toggle **ADHD Mode** to lower all thresholds by 1. Research shows that people with ADHD experience social fatigue faster due to the executive effort of sustained social engagement.
+Toggle **Extra Recovery** to lower all thresholds by 1. Research shows that people with ADHD experience social fatigue faster due to the executive effort of sustained social engagement, and this mode gives anyone who needs more breathing room — neurodivergent or otherwise — a lower bar for Social Energy to kick in.
 
-With ADHD Mode on, the "Balanced" preset triggers after just 2 consecutive days or 3 days in a week — effectively matching the "Recharge Often" defaults.
+With Extra Recovery on, the "Balanced" preset triggers after just 2 consecutive days or 3 days in a week — effectively matching the "Recharge Often" defaults.
 
 ## How recovery blocks appear in the calendar
 

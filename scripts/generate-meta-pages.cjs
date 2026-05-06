@@ -59,7 +59,7 @@ const pages = [
   {
     path: '/docs/social-energy/',
     title: 'Social Energy — Tend Docs',
-    description: 'How Tend detects social fatigue and auto-blocks recovery time. Presets, ADHD mode, and calendar integration.',
+    description: 'How Tend detects social fatigue and auto-blocks recovery time. Presets, Extra Recovery mode, and calendar integration.',
   },
   {
     path: '/docs/intelligence/',
