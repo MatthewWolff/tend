@@ -1,7 +1,7 @@
 # Privacy Policy
 
 **Effective Date:** March 23, 2026
-**Last Updated:** April 22, 2026
+**Last Updated:** June 2, 2026
 
 Tend ("the App") is a personal relationship manager for iOS built by Matthew Wolff ("we," "us," or "our"). This policy explains what data the App collects, how it is used, where it is stored, and what choices you have.
 
@@ -74,6 +74,31 @@ The App sends anonymous usage events to our own Supabase instance to help us und
 
 These events are associated with your authenticated user ID and stored in our Supabase database, protected by the same row-level security as your backup data. They are deleted when you delete your account.
 
+### 1.6 AI-Powered Data Queries (Explore Mode)
+
+The App includes an optional "Ask AI" feature that lets you ask natural language questions about your own data (e.g., "Who have I seen most this month?"). Here's how it works:
+
+**What is sent to the AI:**
+- Your question text (e.g., "Which friends do I always initiate with?")
+- The database table and column structure (names and types only — e.g., "friends table has columns: name, target_tier, frequency_value")
+
+**What is NOT sent:**
+- Your actual data (friend names, connection details, notes, phone numbers, dates, locations)
+- Any personally identifiable information from your database
+
+**How it works:**
+1. Your question is sent to our server (Supabase Edge Function)
+2. Our server sends your question + the database structure to Anthropic (Claude AI) to generate a database query
+3. The generated query is returned to your device
+4. The query executes **locally on your device** against your own database
+5. Results are displayed only to you — they never leave your device
+
+**Rate limiting:** We track how many AI queries you make per day (user ID + date + count) to enforce usage limits. This counter is stored server-side and deleted when you delete your account.
+
+**Third-party AI processing:** Your question text is processed by Anthropic (Claude AI) under their [usage policy](https://www.anthropic.com/legal/usage-policy). Anthropic does not use API inputs for model training. No personal data from your database is included in the request.
+
+You can use the App without ever using this feature. The "Ask AI" tab shows a privacy notice on first use.
+
 ---
 
 ## 2. How We Use Your Data
@@ -86,6 +111,7 @@ All data you provide is used exclusively for App functionality:
 - Syncing connections to your iOS calendar (if enabled)
 - Syncing contact information from your iOS address book (if you grant access)
 - Showing transit time to a friend's address (if enabled)
+- Generating database queries from your natural language questions (if you use Ask AI)
 - Backing up and restoring your data (if cloud backup is enabled)
 - Authenticating your account
 - Understanding usage patterns to improve the App (anonymous usage events only)
@@ -153,9 +179,10 @@ Denying any permission does not block core features. You can change permissions 
 
 | Service | Provider | Purpose | Data Shared |
 |---|---|---|---|
-| **Supabase** | Supabase Inc. | Authentication, optional cloud backup, and anonymous usage events | Email, user ID, app data (if backup enabled), anonymous usage events |
+| **Supabase** | Supabase Inc. | Authentication, optional cloud backup, usage events, and AI query routing | Email, user ID, app data (if backup enabled), anonymous usage events, AI question text |
 | **Google Sign-In** | Google LLC | Account authentication | Email, display name |
 | **Google Maps Platform** | Google LLC | Address autocomplete (Places API), transit time (Routes API), address coordinates (Geocoding API) | Address queries, origin/destination for transit (approximate location if permission granted) |
+| **Anthropic (Claude AI)** | Anthropic PBC | Generate database queries from natural language questions (Explore → Ask AI) | Question text and database structure (table/column names only — never your actual data) |
 | **Apple Push Notification Service** | Apple Inc. | Deliver local notifications | Device push token (no personal data) |
 
 We do not share data with any advertising networks, data brokers, or analytics providers. The Google Maps API key is restricted to the Tend iOS app bundle ID and limited to the three APIs listed above.
@@ -175,6 +202,7 @@ We do not share data with any advertising networks, data brokers, or analytics p
 | **Diagnostic logs (local)** | Rotated and cleaned up automatically; cleared via Settings or on uninstall |
 | **Diagnostic logs (cloud)** | Uploaded only if cloud backup is enabled or manually triggered; deleted on account deletion |
 | **Usage events** | Retained for product improvement; deleted on account deletion |
+| **AI query usage counter** | Daily count per user; deleted on account deletion |
 
 ### Account Deletion
 
