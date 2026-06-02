@@ -88,14 +88,14 @@ The App includes an optional "Ask AI" feature that lets you ask natural language
 
 **How it works:**
 1. Your question is sent to our server (Supabase Edge Function)
-2. Our server sends your question + the database structure to Anthropic (Claude AI) to generate a database query
+2. Our server sends your question + the database structure to a third-party AI service (currently Google Gemini; may change to Anthropic Claude or OpenAI) to generate a database query
 3. The generated query is returned to your device
 4. The query executes **locally on your device** against your own database
 5. Results are displayed only to you — they never leave your device
 
 **Rate limiting:** We track how many AI queries you make per day (user ID + date + count) to enforce usage limits. This counter is stored server-side and deleted when you delete your account.
 
-**Third-party AI processing:** Your question text is processed by Anthropic (Claude AI) under their [usage policy](https://www.anthropic.com/legal/usage-policy). Anthropic does not use API inputs for model training. No personal data from your database is included in the request.
+**Third-party AI processing:** Your question text is processed by a third-party AI service (currently Google Gemini; may change). The provider does not use API inputs for model training. No personal data from your database is included in the request.
 
 You can use the App without ever using this feature. The "Ask AI" tab shows a privacy notice on first use.
 
@@ -182,7 +182,7 @@ Denying any permission does not block core features. You can change permissions 
 | **Supabase** | Supabase Inc. | Authentication, optional cloud backup, usage events, and AI query routing | Email, user ID, app data (if backup enabled), anonymous usage events, AI question text |
 | **Google Sign-In** | Google LLC | Account authentication | Email, display name |
 | **Google Maps Platform** | Google LLC | Address autocomplete (Places API), transit time (Routes API), address coordinates (Geocoding API) | Address queries, origin/destination for transit (approximate location if permission granted) |
-| **Anthropic (Claude AI)** | Anthropic PBC | Generate database queries from natural language questions (Explore → Ask AI) | Question text and database structure (table/column names only — never your actual data) |
+| **AI Query Provider** | Google (Gemini), Anthropic, or OpenAI | Generate database queries from natural language questions (Explore → Ask AI) | Question text and database structure (table/column names only — never your actual data) |
 | **Apple Push Notification Service** | Apple Inc. | Deliver local notifications | Device push token (no personal data) |
 
 We do not share data with any advertising networks, data brokers, or analytics providers. The Google Maps API key is restricted to the Tend iOS app bundle ID and limited to the three APIs listed above.

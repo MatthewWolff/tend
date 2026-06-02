@@ -87,7 +87,7 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         question: 'Do you track or sell my data?',
-        answer: 'No. Tend has no analytics, no ads, and no third-party tracking. The only network calls are for authentication and optional cloud backup.',
+        answer: 'No. We never sell or share your data. Network calls are limited to authentication, optional cloud backup, and the optional "Ask AI" feature (which sends only your question text to generate a query — your actual data stays on-device). Anonymous usage counters (e.g., "friend added") help us improve the app but contain no personal information.',
       },
       {
         question: 'What happens if I delete a friend by accident?',
@@ -100,6 +100,10 @@ const FAQ_DATA: FAQCategory[] = [
       {
         question: 'How does cloud backup work?',
         answer: 'Tend offers three backup types: continuous sync (every 30 seconds), daily snapshot, and manual backup. All are encrypted in transit and at rest.',
+      },
+      {
+        question: 'How does "Ask AI" work? Is my data sent to an AI?',
+        answer: 'No personal data leaves your device. When you ask a question like "Who have I seen most?", only the question text and table structure (column names) are sent to an AI service to generate a database query. That query then runs locally on your phone against your own data. Results never leave your device.',
       },
     ],
   },

@@ -1,7 +1,7 @@
 import {
   Layers, Bell, Zap, Calendar, WifiOff, Users, SkipForward,
   ShieldCheck, Tag, Link2, ClipboardList, MapPin, CheckSquare, BatteryCharging,
-  Sparkles, LifeBuoy, Accessibility,
+  Sparkles, LifeBuoy, Accessibility, BarChart2,
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { colors, fonts, TESTFLIGHT_URL } from '../theme';
@@ -33,6 +33,18 @@ const FEATURES: FeatureSection[] = [
       'Actual Pattern tier derived from recent connection history',
       'Tier-crossing prompts surface drift at the moment it happens',
       'Smart tier suggestions when you change a friend\'s frequency',
+    ],
+  },
+  {
+    icon: <BarChart2 size={26} strokeWidth={1.5} />,
+    title: 'Analytics & Explore',
+    description: 'A full analytics suite that turns your connection history into visual insights. Ask questions in plain English and get instant answers from your own data — all processed locally on your device.',
+    details: [
+      'Social Health radar: research-backed scores for Frequency, Consistency, Reciprocity, Depth, and Diversity',
+      'Leaderboard: swipeable categories (Most Connected, Diverse, Reciprocity, Deepening, Bridge)',
+      'Network graph and chord diagram showing how your social circles overlap',
+      'AI-powered natural language queries — "Who have I seen most this month?"',
+      'Temporal charts: activity by tier over time, weekly rhythm, connection types',
     ],
   },
   {
