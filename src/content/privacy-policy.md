@@ -1,7 +1,7 @@
 # Privacy Policy
 
-**Effective Date:** March 23, 2026
-**Last Updated:** June 2, 2026
+**Effective Date:** June 8, 2026
+**Last Updated:** June 8, 2026
 
 Tend ("the App") is a personal relationship manager for iOS built by Matthew Wolff ("we," "us," or "our"). This policy explains what data the App collects, how it is used, where it is stored, and what choices you have.
 
@@ -13,7 +13,7 @@ Tend ("the App") is a personal relationship manager for iOS built by Matthew Wol
 - Cloud backup is optional and protected by row-level security.
 - We do not sell, rent, share, or monetize your data.
 - We do not use third-party analytics, advertising, or tracking SDKs.
-- Anonymous usage events (e.g., "friend added," "backup created") are sent to our own Supabase instance to help us improve the App. No personal data is included.
+- Pseudonymous usage events (e.g., "friend added," "backup created") are sent to our own Supabase instance to help us improve the App. No personal data is included.
 - You can delete your data — including your account — at any time from within the App.
 
 ---
@@ -66,13 +66,13 @@ Log entries **do not** contain friend names, connection details, personal data, 
 
 ### 1.5 Usage Events
 
-The App sends anonymous usage events to our own Supabase instance to help us understand how the App is used and identify areas for improvement. Examples:
+The App sends pseudonymous usage events to our own Supabase instance to help us understand how the App is used and identify areas for improvement. Examples:
 
 - "friend_added," "connection_logged," "backup_created," "settings_changed"
 - Session start and end times (to calculate session duration)
 - No personal data is included — no names, no friend details, no connection content
 
-These events are associated with your authenticated user ID and stored in our Supabase database, protected by the same row-level security as your backup data. They are deleted when you delete your account.
+These events contain no personal data but are associated with your authenticated user ID for account-deletion purposes. They are stored in our Supabase database, protected by the same row-level security as your backup data, and deleted when you delete your account.
 
 ### 1.6 AI-Powered Data Queries (Explore Mode)
 
@@ -183,7 +183,6 @@ Denying any permission does not block core features. You can change permissions 
 | **Google Sign-In** | Google LLC | Account authentication | Email, display name |
 | **Google Maps Platform** | Google LLC | Address autocomplete (Places API), transit time (Routes API), address coordinates (Geocoding API) | Address queries, origin/destination for transit (approximate location if permission granted) |
 | **AI Query Provider** | Google (Gemini), Anthropic, or OpenAI | Generate database queries from natural language questions (Explore → Ask AI) | Question text and database structure (table/column names only — never your actual data) |
-| **Apple Push Notification Service** | Apple Inc. | Deliver local notifications | Device push token (no personal data) |
 
 We do not share data with any advertising networks, data brokers, or analytics providers. The Google Maps API key is restricted to the Tend iOS app bundle ID and limited to the three APIs listed above.
 
@@ -275,4 +274,4 @@ Questions, concerns, or data requests:
 
 ---
 
-*This privacy policy applies to the Tend iOS app distributed via Apple TestFlight and the App Store.*
+*This privacy policy applies to the Tend iOS app distributed via the App Store.*
