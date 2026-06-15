@@ -10,7 +10,7 @@ import {
   BatteryCharging,
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { colors, fonts, TESTFLIGHT_URL } from '../theme';
+import { colors, fonts, APP_STORE_URL, TESTFLIGHT_URL } from '../theme';
 import { useReveal } from '../useReveal';
 
 const iconProps = { size: 20, strokeWidth: 1.75 };
@@ -74,15 +74,25 @@ export function Home() {
 
           <a
             className="reveal cta-button"
-            href={TESTFLIGHT_URL}
+            href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
             style={styles.betaButton}
           >
-            Join the Beta
+            Download on the App Store
           </a>
 
-          <p className="reveal" style={styles.platform}>iOS only &middot; Free during beta</p>
+          <a
+            className="reveal"
+            href={TESTFLIGHT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.secondaryLink}
+          >
+            Or try the TestFlight beta for early features →
+          </a>
+
+          <p className="reveal" style={styles.platform}>iOS only &middot; Free</p>
         </section>
 
         {/* Divider */}
@@ -188,7 +198,14 @@ const styles: Record<string, React.CSSProperties> = {
   betaButton: {
     fontSize: '1.05rem',
     padding: '0.9rem 2.5rem',
-    marginBottom: '1rem',
+    marginBottom: '0.75rem',
+  },
+  secondaryLink: {
+    fontSize: '0.85rem',
+    color: colors.textTertiary,
+    textDecoration: 'none',
+    marginBottom: '1.25rem',
+    transition: 'color 0.2s',
   },
   platform: {
     fontSize: '0.8rem',

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { colors, fonts, TESTFLIGHT_URL } from '../theme';
+import { colors, fonts, APP_STORE_URL, TESTFLIGHT_URL } from '../theme';
 
 const NAV_LINKS = [
   { to: '/features/', label: 'Features' },
@@ -58,8 +58,8 @@ export function Nav() {
         )}
 
         {!isMobile && (
-          <a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" className="cta-button" style={styles.cta}>
-            Join Beta
+          <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="cta-button" style={styles.cta}>
+            Download
           </a>
         )}
 
@@ -89,13 +89,21 @@ export function Nav() {
             </Link>
           ))}
           <a
-            href={TESTFLIGHT_URL}
+            href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="cta-button"
             style={styles.mobileCta}
           >
-            Join Beta
+            Download
+          </a>
+          <a
+            href={TESTFLIGHT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.mobileSecondary}
+          >
+            Try the TestFlight beta
           </a>
         </div>
       )}
@@ -172,5 +180,13 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '0.95rem',
     padding: '0.75rem 1.5rem',
     marginTop: '0.5rem',
+  },
+  mobileSecondary: {
+    textAlign: 'center',
+    textDecoration: 'none',
+    fontSize: '0.85rem',
+    color: colors.textTertiary,
+    padding: '0.5rem 0',
+    marginTop: '0.25rem',
   },
 };

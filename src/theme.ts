@@ -25,6 +25,7 @@ export const fonts = {
   body: '"DM Sans", -apple-system, BlinkMacSystemFont, sans-serif',
 };
 
+export const APP_STORE_URL = 'https://apps.apple.com/us/app/tend-outreach/id6760388237';
 export const TESTFLIGHT_URL = 'https://testflight.apple.com/join/HvuJgSBe';
 export const CONTACT_EMAIL = 'tend@wolff.sh';
 export const GITHUB_URL = 'https://github.com/MatthewWolff';

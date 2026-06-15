@@ -24,15 +24,15 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         question: 'How do I get started?',
-        answer: 'Download the beta from TestFlight, sign in with Google or Apple, and add your first friend. Set how often you want to connect (e.g., every 2 weeks), and Tend will remind you when it\'s time to reach out.',
+        answer: 'Download Tend from the App Store, sign in with Google or Apple, and add your first friend. Set how often you want to connect (e.g., every 2 weeks), and Tend will remind you when it\'s time to reach out. A TestFlight beta also runs alongside the public release if you want early access to upcoming features.',
       },
       {
         question: 'Is Tend free?',
-        answer: 'Tend is currently free during the beta period. Future pricing has not been determined, but the core functionality will remain accessible.',
+        answer: 'Yes. Tend is currently free on the App Store. Future pricing has not been determined, but the core functionality will remain accessible.',
       },
       {
         question: 'What platforms is Tend available on?',
-        answer: 'Tend is currently available for iOS only, in beta via TestFlight. An Android version is not currently planned.',
+        answer: 'Tend is currently available for iOS only, on the App Store. An Android version is not currently planned.',
       },
     ],
   },

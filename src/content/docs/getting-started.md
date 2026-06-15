@@ -4,7 +4,9 @@ Welcome to Tend! This guide walks you through the basics: adding friends, settin
 
 ## 1. Sign in
 
-Download Tend from TestFlight and sign in with your Google or Apple account. Your account is used for optional cloud backup — all data is stored locally on your device by default.
+Download Tend from the [App Store](https://apps.apple.com/us/app/tend-outreach/id6760388237) and sign in with your Google or Apple account. Your account is used for optional cloud backup — all data is stored locally on your device by default.
+
+If you want early access to upcoming features before they ship publicly, you can also join the [TestFlight beta](https://testflight.apple.com/join/HvuJgSBe).
 
 ## 2. Add your first friend
 

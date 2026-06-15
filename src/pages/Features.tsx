@@ -4,7 +4,7 @@ import {
   Sparkles, LifeBuoy, Accessibility, BarChart2,
 } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { colors, fonts, TESTFLIGHT_URL } from '../theme';
+import { colors, fonts, APP_STORE_URL, TESTFLIGHT_URL } from '../theme';
 import { useReveal } from '../useReveal';
 
 interface FeatureSection {
@@ -246,14 +246,22 @@ export function Features() {
 
         <section className="reveal" style={styles.cta}>
           <h2 style={styles.ctaTitle}>Ready to start tending?</h2>
-          <p style={styles.ctaDesc}>Join the iOS beta and build better habits around the relationships that matter.</p>
+          <p style={styles.ctaDesc}>Build better habits around the relationships that matter.</p>
           <a
-            href={TESTFLIGHT_URL}
+            href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="cta-button"
           >
-            Join the Beta
+            Download on the App Store
+          </a>
+          <a
+            href={TESTFLIGHT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.ctaSecondary}
+          >
+            Or try the TestFlight beta for early features →
           </a>
         </section>
       </div>
@@ -362,5 +370,13 @@ const styles: Record<string, React.CSSProperties> = {
     marginLeft: 'auto',
     marginRight: 'auto',
     lineHeight: 1.5,
+  },
+  ctaSecondary: {
+    display: 'block',
+    marginTop: '1rem',
+    fontSize: '0.85rem',
+    color: colors.textTertiary,
+    textDecoration: 'none',
+    transition: 'color 0.2s',
   },
 };

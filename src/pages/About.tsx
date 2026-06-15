@@ -1,6 +1,6 @@
 import { Heart, Shield, Smartphone, Brain } from 'lucide-react';
 import { Layout } from '../components/Layout';
-import { colors, fonts, CONTACT_EMAIL, TESTFLIGHT_URL } from '../theme';
+import { colors, fonts, CONTACT_EMAIL, APP_STORE_URL, TESTFLIGHT_URL } from '../theme';
 import { useReveal } from '../useReveal';
 
 const values = [
@@ -85,6 +85,9 @@ export function About() {
             — a software engineer who got tired of feeling bad about not keeping in touch with the people he cares about.
           </p>
           <p style={styles.bodyText}>
+            After a long private beta, Tend is now publicly available on the App Store. The TestFlight beta still runs alongside the public release for people who want a peek at upcoming features before they ship.
+          </p>
+          <p style={styles.bodyText}>
             Questions, feedback, or just want to say hi?{' '}
             <a href={`mailto:${CONTACT_EMAIL}`} className="glow-link">{CONTACT_EMAIL}</a>
           </p>
@@ -93,12 +96,20 @@ export function About() {
         <section className="reveal" style={styles.cta}>
           <h2 style={styles.ctaTitle}>Ready to start tending?</h2>
           <a
-            href={TESTFLIGHT_URL}
+            href={APP_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="cta-button"
           >
-            Join the Beta
+            Download on the App Store
+          </a>
+          <a
+            href={TESTFLIGHT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.ctaSecondary}
+          >
+            Or try the TestFlight beta for early features →
           </a>
         </section>
       </div>
@@ -208,5 +219,13 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 400,
     margin: '0 0 1.5rem',
     letterSpacing: '-0.02em',
+  },
+  ctaSecondary: {
+    display: 'block',
+    marginTop: '1rem',
+    fontSize: '0.85rem',
+    color: colors.textTertiary,
+    textDecoration: 'none',
+    transition: 'color 0.2s',
   },
 };
