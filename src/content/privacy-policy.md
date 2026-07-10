@@ -1,7 +1,7 @@
 # Privacy Policy
 
 **Effective Date:** June 8, 2026
-**Last Updated:** June 8, 2026
+**Last Updated:** July 9, 2026
 
 Tend ("the App") is a personal relationship manager for iOS built by Matthew Wolff ("we," "us," or "our"). This policy explains what data the App collects, how it is used, where it is stored, and what choices you have.
 
@@ -110,6 +110,7 @@ All data you provide is used exclusively for App functionality:
 - Scheduling local notification reminders
 - Syncing connections to your iOS calendar (if enabled)
 - Syncing contact information from your iOS address book (if you grant access)
+- Searching your contacts to add friends by name from within search (if you grant access)
 - Showing transit time to a friend's address (if enabled)
 - Generating database queries from your natural language questions (if you use Ask AI)
 - Backing up and restoring your data (if cloud backup is enabled)
@@ -158,7 +159,7 @@ All permissions are optional. The App functions without any of them.
 | Permission | Purpose | When Requested |
 |---|---|---|
 | **Contacts (Picker)** | Import selected contacts as friends via the iOS contact picker | When you tap "Import from Contacts" — no permission prompt required |
-| **Contacts (Full or Limited)** | Sync updated contact information (birthday, phone, address) for friends you've already imported | When you tap "Sync Contacts" in Settings — a permission explanation is shown first |
+| **Contacts (Full or Limited)** | Search your address book to add friends by name, and sync updated contact information (birthday, phone, address) for friends you've already imported | When you first search your contacts, or tap "Sync Contacts" in Settings — a permission explanation is shown first |
 | **Notifications** | Send local reminders when friends are overdue or have upcoming birthdays | During onboarding or in Settings |
 | **Calendar** | Write logged connections as calendar events; resync after cloud restore | When you enable Calendar Sync in Settings |
 | **Location (When In Use)** | Show transit time to a friend's address; record location on a connection | When you view a transit card or add a location to a connection |
@@ -169,7 +170,7 @@ Tend uses two different contact access methods:
 
 - **Contact Picker (no permission required):** When you import contacts, the iOS system picker lets you select specific contacts. The App receives only the contacts you choose — it never sees your full address book. This requires no iOS permission prompt.
 
-- **Contact Sync (requires permission):** If you want to keep imported friends' info up to date (e.g., when a contact changes their phone number), you can grant Tend contact access in Settings. On iOS 18+, you can choose "Full Access" (sync all linked contacts) or "Select Contacts" (sync only contacts you pick). A pre-permission explanation is shown before the iOS prompt. You can revoke this access at any time in iOS Settings.
+- **Contact Search & Sync (requires permission):** If you want to search your address book to add friends by name, or keep imported friends' info up to date (e.g., when a contact changes their phone number), you can grant Tend contact access. On iOS 18+, you can choose "Full Access" (search and sync all contacts) or "Select Contacts" (only the contacts you pick). A pre-permission explanation is shown before the iOS prompt. Your contacts are read on-device only and are never uploaded. You can revoke this access at any time in iOS Settings.
 
 Denying any permission does not block core features. You can change permissions at any time in iOS Settings.
 
