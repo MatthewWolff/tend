@@ -4,7 +4,7 @@ Welcome to Tend! This guide walks you through the basics: adding friends, settin
 
 ## 1. Sign in
 
-Download Tend from the [App Store](https://apps.apple.com/us/app/tend-outreach/id6760388237) and sign in with your Google or Apple account. Your account is used for optional cloud backup — all data is stored locally on your device by default.
+Download Tend from the [App Store](https://apps.apple.com/us/app/tend-outreach/id6760388237) and sign in with your Google or Apple account. Your data lives in a database on your device, so the app works offline. Your account is what Tend uses to back that database up to the cloud, which happens automatically once you are signed in.
 
 If you want early access to upcoming features before they ship publicly, you can also join the [TestFlight beta](https://testflight.apple.com/join/HvuJgSBe).
 

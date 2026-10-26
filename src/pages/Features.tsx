@@ -38,7 +38,7 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <BarChart2 size={26} strokeWidth={1.5} />,
     title: 'Analytics & Explore',
-    description: 'A full analytics suite that turns your connection history into visual insights. Ask questions in plain English and get instant answers from your own data — all processed locally on your device.',
+    description: 'A full analytics suite that turns your connection history into visual insights. Ask questions in plain English and get instant answers from your own data — the charts and queries run on your device, and only your question text leaves it.',
     details: [
       'Social Health radar: research-backed scores for Frequency, Consistency, Reciprocity, Depth, and Diversity',
       'Leaderboard: swipeable categories (Most Connected, Diverse, Reciprocity, Deepening, Bridge)',
@@ -104,10 +104,10 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <WifiOff size={26} strokeWidth={1.5} />,
     title: 'Offline-First',
-    description: 'Everything works without an internet connection. Your data lives on your device — cloud backup is optional.',
+    description: 'Everything works without an internet connection. Your data lives on your device and syncs to the cloud once you are back online.',
     details: [
       'Full functionality offline',
-      'Optional encrypted cloud backup',
+      'Automatic cloud backup, encrypted in transit and at rest',
       'Restore on a new device from any backup slot',
     ],
   },
@@ -197,11 +197,11 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <ShieldCheck size={26} strokeWidth={1.5} />,
     title: 'Private by Design',
-    description: 'No analytics, no ads, no tracking. Your friendship data is yours alone.',
+    description: 'No ads, no tracking SDKs, no third-party analytics. Your friendship data is yours alone, and never sold or shared.',
     details: [
-      'All data stored on-device in SQLite',
-      'Cloud backup encrypted in transit and at rest',
-      'No third-party analytics or data sharing',
+      'Your data lives on-device in SQLite, and is backed up to the cloud for you',
+      'Cloud backup encrypted in transit and at rest, isolated per user',
+      'No third-party analytics, ad networks, or data brokers',
     ],
   },
 ];

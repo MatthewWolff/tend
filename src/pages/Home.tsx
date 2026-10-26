@@ -21,7 +21,7 @@ const features = [
   { icon: <Bell {...iconProps} />, title: 'Smart reminders', desc: 'Gentle nudges when it\'s time to reach out' },
   { icon: <Layers {...iconProps} />, title: 'Relationship circles', desc: 'Organize friends by closeness, from inner circle to casual' },
   { icon: <Calendar {...iconProps} />, title: 'Calendar sync', desc: 'Scheduled connections show up in your iOS calendar' },
-  { icon: <ShieldCheck {...iconProps} />, title: 'Private by design', desc: 'Your data stays on your device — cloud backup optional' },
+  { icon: <ShieldCheck {...iconProps} />, title: 'Private by design', desc: 'No ads, no tracking, never sold — and your backup is yours alone' },
 ];
 
 const intelligenceIconProps = { size: 22, strokeWidth: 1.5 };

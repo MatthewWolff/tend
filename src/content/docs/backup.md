@@ -1,6 +1,6 @@
 # Backup & Restore
 
-Tend stores all data locally on your device. Cloud backup is optional — when enabled, your database is encrypted and uploaded to a secure cloud service.
+Tend keeps your data in a database on your device, and backs that database up to the cloud automatically once you sign in. Uploads are encrypted in transit and at rest by the cloud provider. There is currently no setting to turn automatic backup off, though you can delete your cloud data at any time.
 
 ## How backup works
 
@@ -17,12 +17,13 @@ All backups are:
 - **Per-user** — your data is isolated from other users
 - **Deletable** — you can remove all cloud data at any time
 
-## Enabling backup
+## Managing backup
 
-1. Go to **Settings → Cloud Backup**
-2. Toggle backup on
-3. Continuous sync starts automatically
-4. Manual backups available via the "Back Up Now" button
+Continuous sync and the daily snapshot need no setup: they start on their own once you are signed in. The **Settings → Cloud Backup** screen is where you manage the rest.
+
+- **Create Backup** fills one of the three manual slots. When all three are full, the oldest rolls off.
+- **Restore Data** pulls a chosen slot back down over your local database.
+- **Delete Cloud Data** removes every slot from the cloud.
 
 ## Restoring from backup
 
@@ -38,21 +39,23 @@ After restore, calendar events are automatically re-synced to your new device's 
 
 ## What's backed up
 
-Everything in the Tend database:
+The whole database file, not a selected subset of it. That means:
 
-- Friends (names, frequencies, tiers, contact links)
+- Friends (names, nicknames, birthdays, phone numbers, emails, addresses and coordinates, frequencies, tiers, contact links)
 - Connections (dates, types, notes, levels)
-- Events (group connections, locations, calendar sync)
-- Tags and associations
+- Events (group connections, venues, locations, calendar sync)
+- Life events, including any recorded under Health or Loss
+- Tags, associations you created, and associations Tend learned
 - Settings (notification preferences, tier boundaries)
 - Notification queue
-- Audit log (change history)
+- Recovery blocks and dismissed homework items
+- Audit log (change history, including the old and new value of each change)
 
 ## What's NOT backed up
 
 - **iOS Calendar events** — re-synced automatically after restore
 - **Auth tokens** — you re-authenticate on the new device
-- **Profile photos** — referenced by URL from iOS Contacts
+- **Profile photo images** — the database stores the local path to a photo, not the image itself, so photos do not travel to a new device
 
 ## Accidental deletes
 

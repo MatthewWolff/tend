@@ -32,7 +32,7 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         question: 'What platforms is Tend available on?',
-        answer: 'Tend is currently available for iOS only, on the App Store. An Android version is not currently planned.',
+        answer: 'Tend is on the App Store for iOS. An Android version is in development, but it is not available yet and there is no release date to share.',
       },
     ],
   },
@@ -70,11 +70,11 @@ const FAQ_DATA: FAQCategory[] = [
     items: [
       {
         question: 'Does Tend watch how I actually use it?',
-        answer: 'Yes, locally. Tend computes an "Actual Pattern" tier for each friend from your recent connection history (a 90-day rolling window) and compares it to the target tier you set. If the two drift apart — say, you put someone in the Inner Circle but have only connected monthly — Tend shows a one-time prompt asking whether to adjust your target or keep it. Nothing leaves your device.',
+        answer: 'Yes, locally. Tend computes an "Actual Pattern" tier for each friend from your recent connection history (a 90-day rolling window) and compares it to the target tier you set. If the two drift apart — say, you put someone in the Inner Circle but have only connected monthly — Tend shows a one-time prompt asking whether to adjust your target or keep it. The comparison runs entirely on your phone — no connection history is sent anywhere to compute it.',
       },
       {
         question: 'Does Tend learn which friends I see together?',
-        answer: 'Yes. After a few group hangouts with the same pair, Tend quietly proposes linking them as associated friends. Suggestions appear on profiles, after saving a group event, and as "Often with Alice" sub-labels in the friend picker. The learning is passive and local — nothing is uploaded — and you can opt out or clear what Tend has learned from Settings when you want to.',
+        answer: 'Yes. After a few group hangouts with the same pair, Tend quietly proposes linking them as associated friends. Suggestions appear on profiles, after saving a group event, and as "Often with Alice" sub-labels in the friend picker. The learning is passive and on by default. What it stores is a count against a pair of friend IDs, with no names or hangout details in it, but like everything in your database it rides along in your cloud backup. You can opt out or clear what Tend has learned from Settings whenever you want.',
       },
     ],
   },
@@ -83,11 +83,11 @@ const FAQ_DATA: FAQCategory[] = [
     items: [
       {
         question: 'Where is my data stored?',
-        answer: 'All data is stored locally on your device in SQLite. Cloud backup is optional — if enabled, your database is encrypted and uploaded to Supabase. You can delete cloud data at any time.',
+        answer: 'Your data lives in a SQLite database on your device, and that database is backed up to Supabase automatically once you sign in. Uploads are encrypted in transit and at rest, and row-level security means only your account can read them. There is currently no setting to turn backup off, but you can delete your cloud data at any time.',
       },
       {
         question: 'Do you track or sell my data?',
-        answer: 'No. We never sell or share your data. Network calls are limited to authentication, optional cloud backup, and the optional "Ask AI" feature (which sends only your question text to generate a query — your actual data stays on-device). Anonymous usage counters (e.g., "friend added") help us improve the app but contain no personal information.',
+        answer: 'We never sell or share your data, and there are no third-party analytics, ad, or tracking SDKs in the app. There is some first-party telemetry: pseudonymous usage counters (e.g., "friend added"), a summary row of counts and version numbers, and diagnostic logs. None of it carries names or note content, but it is tied to your user ID and currently has no off switch. All of it is deleted when you delete your account.',
       },
       {
         question: 'What happens if I delete a friend by accident?',
@@ -103,7 +103,7 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         question: 'How does "Ask AI" work? Is my data sent to an AI?',
-        answer: 'No personal data leaves your device. When you ask a question like "Who have I seen most?", only the question text and table structure (column names) are sent to an AI service to generate a database query. That query then runs locally on your phone against your own data. Results never leave your device.',
+        answer: 'Your database is not sent. When you ask a question like "Who have I seen most?", only the question text and the table structure (column names) go to an AI service, which returns a database query. That query runs locally on your phone against your own data, and the results never leave your device. Two things worth knowing: a question you type can itself name a friend, and if a query comes back with no results we keep the question text server-side to improve the feature. The privacy policy covers both.',
       },
     ],
   },

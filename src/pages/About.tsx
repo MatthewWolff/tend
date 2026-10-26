@@ -17,7 +17,7 @@ const values = [
   {
     icon: <Shield size={22} strokeWidth={1.5} />,
     title: 'Your data, your device',
-    desc: 'Everything lives on your phone. Cloud backup is opt-in, encrypted, and deletable anytime.',
+    desc: 'Everything lives on your phone, and backs itself up so you can\'t lose it. Encrypted, isolated to your account, deletable anytime.',
   },
   {
     icon: <Smartphone size={22} strokeWidth={1.5} />,

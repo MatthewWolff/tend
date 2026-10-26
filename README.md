@@ -39,16 +39,18 @@ Had coffee with a friend? Long-press their name and log it in two taps. Or open 
 
 ## Privacy First
 
-- All data stays on your device by default
-- Optional encrypted cloud backup
-- No ads, no analytics, no tracking
-- You can delete everything at any time
+- Your data lives on your device, and the app works fully offline
+- Automatic encrypted cloud backup, isolated to your account
+- No ads, no tracking SDKs, no third-party analytics, and never sold
+- You can delete everything, cloud copy included, at any time
 
 Read the full [Privacy Policy](https://wolff.sh/tend/privacy-policy).
 
 ## Get Tend
 
-Tend is currently in development for iOS. Stay tuned.
+Tend is on the [App Store](https://apps.apple.com/us/app/tend-outreach/id6760388237), free, for iOS. A [TestFlight beta](https://testflight.apple.com/join/HvuJgSBe) runs alongside it if you want features before they ship publicly.
+
+An Android version is in development and not yet available.
 
 ---
 

@@ -28,7 +28,7 @@ This is the single most important feature in Tend: your relationship goals stay 
 
 ## Learned friend associations
 
-Tend notices which friends you tend to see together. After three or more group hangouts with the same pair of friends, it quietly proposes linking them as associated — so next time you're planning something, the friend picker surfaces the partner as "Often with Alice."
+Tend notices which friends you tend to see together. Once a pair has turned up in three group hangouts, with the most recent inside the last 90 days, it quietly proposes linking them as associated — so next time you're planning something, the friend picker surfaces the partner as "Often with Alice."
 
 Signals Tend uses:
 - **Shared events** — if Alice and Bob are in the same connection, Tend counts a co-occurrence.
@@ -43,11 +43,11 @@ Signals Tend uses:
 
 ### Opting out
 
-Tend's learning is passive and local — nothing is uploaded, and the signals stay on your device. If you'd rather Tend not learn associations:
+Tend's learning is passive and on by default. The counts it keeps are plain numbers against a pair of friend IDs, with no names, notes, or hangout details in them, but they live in your database, so they are included in your cloud backup. If you'd rather Tend not learn associations:
 
 1. Go to **Settings → Personalization → Learning**.
 2. Toggle **Learn friend associations** off.
-3. Optionally tap **Clear all learned associations** to wipe the state.
+3. Optionally tap **Clear learned associations** to wipe the state.
 
 Associations you've added manually are unaffected by the toggle — they stay put.
 

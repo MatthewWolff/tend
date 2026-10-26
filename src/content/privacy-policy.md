@@ -1,7 +1,7 @@
 # Privacy Policy
 
 **Effective Date:** June 8, 2026
-**Last Updated:** July 9, 2026
+**Last Updated:** October 26, 2026
 
 Tend ("the App") is a personal relationship manager for iOS built by Matthew Wolff ("we," "us," or "our"). This policy explains what data the App collects, how it is used, where it is stored, and what choices you have.
 
@@ -9,8 +9,8 @@ Tend ("the App") is a personal relationship manager for iOS built by Matthew Wol
 
 ## At a Glance
 
-- All data is stored on your device by default.
-- Cloud backup is optional and protected by row-level security.
+- Your data lives in a database on your device. That database is also backed up to our cloud automatically (see Section 3.2), protected by row-level security so only your account can read it.
+- Most of what you store is about other people: your friends' names, birthdays, phone numbers, addresses, and your private notes about them. They did not install Tend. Please treat their data with the care you would want for your own.
 - We do not sell, rent, share, or monetize your data.
 - We do not use third-party analytics, advertising, or tracking SDKs.
 - Pseudonymous usage events (e.g., "friend added," "backup created") are sent to our own Supabase instance to help us improve the App. No personal data is included.
@@ -27,7 +27,9 @@ Tend ("the App") is a personal relationship manager for iOS built by Matthew Wol
 | **Friend profiles** | Name, nickname, phone number, email, birthday, address, photo, latitude/longitude | Core friend management and display |
 | **Connections** | Date, time, type (call, dinner, etc.), quality level, initiator, notes, location | Tracking meetups and calculating due dates |
 | **Tags** | Labels you create and assign to friends (e.g., "hiking," "work") | Organizing and filtering friends |
-| **Friend associations** | Links between friends you define (e.g., "Alice knows Bob") | Relationship mapping |
+| **Friend associations** | Links between friends you create yourself (e.g., "Alice knows Bob") | Relationship mapping |
+| **Life events** | Milestones you record about a friend: type, title, date, and free-text notes. The available types include Health and Loss, which may be sensitive. | Remembering what matters to each friend |
+| **Plans** | Upcoming hangouts: date, time, venue name, location, coordinates, meeting URL, notes | Scheduling and calendar sync |
 | **Your profile** | Display name, birthday, address | In-app greetings and profile display |
 | **App settings** | Notification preferences, calendar sync settings, theme, frequency targets, tier boundaries | Personalizing the App experience |
 
@@ -35,34 +37,38 @@ Tend ("the App") is a personal relationship manager for iOS built by Matthew Wol
 
 | Data Type | Purpose |
 |---|---|
-| **Notification queue** | Scheduling and delivering local reminders (stored on-device, cleared after delivery) |
-| **Audit log** | Recording changes to friend data, connections, events, settings, and notifications for your review (stored on-device only) |
-| **Calculated metrics** | Target tier, effective tier, due dates, connection statistics (derived from your data, not transmitted) |
-| **Diagnostic logs** | Error-level events with timestamps, error messages, and app version (see Section 1.4) |
-| **Usage events** | Anonymous, aggregate events like "friend added" or "backup created" (see Section 1.5) |
+| **Notification queue** | Scheduling and delivering local reminders (cleared after delivery) |
+| **Audit log** | Recording changes to friend data, connections, events, settings, and notifications for your review. Entries include the old and new value of a changed field. |
+| **Calculated metrics** | Target tier, actual-pattern tier, due dates, connection statistics, derived from your data |
+| **Learned associations** | How often two friends appear in the same hangout, used to suggest linking them (see Section 1.7) |
+| **Diagnostic logs** | Structured app events with timestamps, a message, a context object, and app version (see Section 1.4) |
+| **Usage events** | Pseudonymous events like "friend added" or "backup created" (see Section 1.5) |
+
+Everything in this table except the diagnostic logs and usage events lives in the on-device database, which the cloud backup uploads in full. Section 3.2 covers that.
 
 ### 1.3 Data We Do Not Collect
 
 - **No third-party analytics or tracking SDKs.** We do not use Firebase Analytics, Amplitude, Mixpanel, Segment, Sentry, Crashlytics, or any third-party analytics or crash reporting service.
 - **No advertising data.** We do not serve ads or collect data for advertising purposes.
 - **No background location tracking.** Location is only accessed when you actively use a location feature. Background location updates are explicitly disabled in the App.
-- **No calendar reading.** The App only writes events to your calendar. It does not read existing calendar entries.
-- **No device fingerprinting.** We do not collect device identifiers, hardware information, or generate fingerprints.
+- **No browsing your calendar.** The App writes its own events to your calendar and looks those same events back up by the identifier it saved, so it can keep them in step with Tend. It does not read, list, or scan calendar entries it did not create.
+- **No device fingerprinting.** We do not collect device identifiers, advertising IDs, hardware serial numbers, or generate fingerprints. The one piece of device information we do record is your operating system version, in the account summary described in Section 1.5.
 
 ### 1.4 Diagnostic Logs
 
-The App records error-level events to local log files for troubleshooting. Each log entry contains:
-- Timestamp, log level (error/warn), and the component that produced it
-- Error message text and contextual details (e.g., which operation failed)
-- App version number
+While you are signed in, the App sends structured diagnostic entries to our Supabase database so we can troubleshoot problems. Each entry contains:
 
-Log entries **do not** contain friend names, connection details, personal data, or device identifiers.
+- Timestamp, log level, and the component that produced it
+- A message, plus a context object describing what happened (for example, which operation failed and how many records it involved)
+- App version and build number
 
-**Auto-upload:** If cloud backup is enabled, rotated log files are automatically uploaded to your private storage on Supabase (same row-level security as your backup data). You can disable this by turning off cloud backup.
+In release builds, entries at **info**, **warn** and **error** level are sent. Debug-level entries never leave your device.
 
-**Manual upload:** You can manually upload logs from **Settings → Diagnostic Logs → Upload Logs Now**. This is useful when reporting a bug.
+Log entries **do not** contain friend names, connection details, or device identifiers. Where an entry needs to refer to a specific friend, connection, or event, the identifier is replaced with a short opaque token, so we can tell that two entries concern the same record without seeing which record it is.
 
-**Clearing logs:** You can delete all local log files at any time from **Settings → Diagnostic Logs → Clear Logs**. Remote logs are deleted when you delete your account.
+**There is currently no setting to turn this off,** and it is not tied to cloud backup. Entries are stored under the same row-level security as your backup data, and are deleted when you delete your account.
+
+Earlier versions of Tend wrote diagnostic logs to files on the device and offered Settings controls to upload or clear them. That file-based system was removed; entries now go straight to the database described above, and those Settings controls no longer exist.
 
 ### 1.5 Usage Events
 
@@ -72,7 +78,9 @@ The App sends pseudonymous usage events to our own Supabase instance to help us 
 - Session start and end times (to calculate session duration)
 - No personal data is included — no names, no friend details, no connection content
 
-These events contain no personal data but are associated with your authenticated user ID for account-deletion purposes. They are stored in our Supabase database, protected by the same row-level security as your backup data, and deleted when you delete your account.
+These events contain no personal data but are associated with your authenticated user ID for account-deletion purposes. They are stored in our Supabase database, protected by the same row-level security as your backup data, and deleted when you delete your account. **There is currently no setting to turn them off.**
+
+**Account summary.** Alongside those events, the App keeps a single summary row per account so we can see how Tend is being used overall. It holds counts and version numbers only: how many friends and connections you have, how many sessions you have had in total and in the last 7 and 30 days, how many connections you logged in the last 7 and 30 days, when your account was created, when you were last active, and the App version, build number, and operating system version of your device. It contains no names, notes, dates, or any other content from your data. It is deleted when you delete your account.
 
 ### 1.6 AI-Powered Data Queries (Explore Mode)
 
@@ -84,7 +92,9 @@ The App includes an optional "Ask AI" feature that lets you ask natural language
 
 **What is NOT sent:**
 - Your actual data (friend names, connection details, notes, phone numbers, dates, locations)
-- Any personally identifiable information from your database
+- Any personally identifiable information read out of your database
+
+Note that this is about what Tend extracts from your database, which is nothing. Your question is sent as you typed it, so if you type a friend's name into the question, that name goes with it.
 
 **How it works:**
 1. Your question is sent to our server (Supabase Edge Function)
@@ -93,11 +103,26 @@ The App includes an optional "Ask AI" feature that lets you ask natural language
 4. The query executes **locally on your device** against your own database
 5. Results are displayed only to you — they never leave your device
 
-**Rate limiting:** We track how many AI queries you make per day (user ID + date + count) to enforce usage limits. This counter is stored server-side and deleted when you delete your account.
+**What we keep server-side:**
+
+- **A daily query counter.** User ID, date, and count, to enforce usage limits.
+- **Questions that returned nothing.** If a query runs and finds no matching rows, we store your question text exactly as you typed it, along with the structure of the generated query with all values stripped out (for example `WHERE name = ?` rather than `WHERE name = 'Sarah'`), the AI provider used, and a timestamp. We use these to find gaps in the AI's understanding and improve it. Because a question can name a friend ("How often do I see Sarah?"), these records can contain a friend's name. They are stored in our Supabase database under the same row-level security as your backup data, are kept until you delete your account, and are deleted when you do.
+- **Nothing is stored server-side for a query that returns results.**
 
 **Third-party AI processing:** Your question text is processed by a third-party AI service (currently Google Gemini; may change). The provider does not use API inputs for model training. No personal data from your database is included in the request.
 
 You can use the App without ever using this feature. The "Ask AI" tab shows a privacy notice on first use.
+
+### 1.7 Learned Friend Associations
+
+Tend notices which friends you tend to see together. When you log a hangout with more than one friend, the App increments a private counter for each pair of friends present. Once a pair has co-occurred three times and has done so recently (the most recent time within the last 90 days), Tend suggests on that friend's profile that you link them, which you can accept, postpone, or decline. The App also uses these counts to put likely co-attendees nearer the top of the friend picker.
+
+- **This happens passively.** You do not have to ask for it, and it is on by default.
+- **What is stored:** the two friend IDs, how many times they have co-occurred, when they first and last co-occurred, and whether you have already been asked about the pair. No notes, names, or hangout details are stored in these records.
+- **No link is created without you.** A suggestion only becomes a real friend association when you accept it.
+- **Turning it off:** Settings, then Personalization, then turn off **Learn friend associations**. This stops all further counting.
+- **Deleting it:** Settings, then Personalization, then **Clear learned associations**. That permanently deletes every learned record. Friends you linked manually are unaffected.
+- Like all on-device data, these records are included in the cloud backup (Section 3.2).
 
 ---
 
@@ -113,9 +138,9 @@ All data you provide is used exclusively for App functionality:
 - Searching your contacts to add friends by name from within search (if you grant access)
 - Showing transit time to a friend's address (if enabled)
 - Generating database queries from your natural language questions (if you use Ask AI)
-- Backing up and restoring your data (if cloud backup is enabled)
+- Backing up and restoring your data
 - Authenticating your account
-- Understanding usage patterns to improve the App (anonymous usage events only)
+- Understanding usage patterns to improve the App (pseudonymous usage events only)
 
 We do not use your data for marketing, profiling, advertising, or any purpose beyond operating the App for you.
 
@@ -123,32 +148,40 @@ We do not use your data for marketing, profiling, advertising, or any purpose be
 
 ## 3. Where Your Data Is Stored
 
-### 3.1 On-Device Storage (Default)
+### 3.1 On-Device Storage
 
-All friend, connection, tag, association, and settings data is stored locally on your device in an embedded SQLite database (via WatermelonDB). This data never leaves your device unless you enable cloud backup.
+All friend, connection, tag, association, life-event, plan, audit-log, and settings data is stored on your device in an embedded SQLite database (via WatermelonDB). This database is also uploaded to our cloud automatically. Section 3.2 covers that.
 
 Additional local storage:
 - **iOS Keychain** — securely stores your authentication credentials
 - **AsyncStorage** — stores temporary App state (e.g., onboarding progress)
-- **Local files** — optional diagnostic logs (stored on-device, never transmitted unless you explicitly share them)
 
-### 3.2 Cloud Backup (Optional, Off by Default)
+### 3.2 Cloud Backup (On by Default)
 
-If you enable cloud backup, your data is synced to Supabase (our cloud provider). Cloud data is protected by:
+Once you sign in, Tend continuously backs your database up to Supabase (our cloud provider). This is on by default and there is currently no setting to turn it off.
+
+When your data changes, the App waits about 30 seconds and then uploads the **entire database file**, not a selected subset. That means the backup contains everything in Section 1.1 and Section 1.2: your friends' names, nicknames, birthdays, phone numbers, email addresses, home addresses and geocoded coordinates, your notes about them, their life events including any you recorded under Health or Loss, your plans, your audit log, and your learned associations. Photos are not uploaded; only the local file path to a photo is stored.
+
+Cloud data is protected by:
 
 - **Row-level security (RLS)** — database policies ensure only your authenticated session can read or write your data
 - **TLS 1.2+ encryption** in transit
 - **AES-256 encryption** at rest (Supabase default)
 - **Authentication required** for all data access
 
-You can disable cloud backup at any time in Settings. To delete your cloud data, use "Delete Cloud Data" in Settings or delete your account.
+The backup is not end-to-end encrypted, so it is not technically sealed against us the way a zero-knowledge service would be.
+
+To delete your cloud data, use "Delete Cloud Data" in Settings, or delete your account to remove it permanently along with everything else.
 
 ### 3.3 Authentication
 
-The App uses Supabase Authentication with Google Sign-In. When you sign in:
+The App uses Supabase Authentication. You can sign in with Google, with Apple, or with an email address and password. In every case:
+
 - Your email address and a unique user ID are stored by Supabase
-- Your Google profile name may be used as your initial display name
-- No Google account data beyond email and display name is accessed
+- Your profile name from Google or Apple may be used as your initial display name
+- No account data beyond email and display name is accessed from Google or Apple
+
+If you use Sign in with Apple and choose to hide your email, Apple gives us a private relay address instead of your real one, and that relay address is what we store.
 
 ---
 
@@ -170,7 +203,7 @@ Tend uses two different contact access methods:
 
 - **Contact Picker (no permission required):** When you import contacts, the iOS system picker lets you select specific contacts. The App receives only the contacts you choose — it never sees your full address book. This requires no iOS permission prompt.
 
-- **Contact Search & Sync (requires permission):** If you want to search your address book to add friends by name, or keep imported friends' info up to date (e.g., when a contact changes their phone number), you can grant Tend contact access. On iOS 18+, you can choose "Full Access" (search and sync all contacts) or "Select Contacts" (only the contacts you pick). A pre-permission explanation is shown before the iOS prompt. Your contacts are read on-device only and are never uploaded. You can revoke this access at any time in iOS Settings.
+- **Contact Search & Sync (requires permission):** If you want to search your address book to add friends by name, or keep imported friends' info up to date (e.g., when a contact changes their phone number), you can grant Tend contact access. On iOS 18+, you can choose "Full Access" (search and sync all contacts) or "Select Contacts" (only the contacts you pick). A pre-permission explanation is shown before the iOS prompt. Your address book itself is read on-device only and is never uploaded as a whole. However, the fields Tend copies into a friend's record (name, phone number, email, birthday, address) become part of your Tend database, and that database is backed up to the cloud. Section 3.2 covers that. You can revoke contact access at any time in iOS Settings.
 
 Denying any permission does not block core features. You can change permissions at any time in iOS Settings.
 
@@ -180,10 +213,11 @@ Denying any permission does not block core features. You can change permissions 
 
 | Service | Provider | Purpose | Data Shared |
 |---|---|---|---|
-| **Supabase** | Supabase Inc. | Authentication, optional cloud backup, usage events, and AI query routing | Email, user ID, app data (if backup enabled), anonymous usage events, AI question text |
-| **Google Sign-In** | Google LLC | Account authentication | Email, display name |
+| **Supabase** | Supabase Inc. | Authentication, cloud backup, usage events, diagnostic logs, and AI query routing | Email, user ID, your entire app database (backup is on by default, see Section 3.2), pseudonymous usage events, an account summary of counts and version numbers, diagnostic logs, and Ask-AI question text for questions that returned no results |
+| **Google Sign-In** | Google LLC | Account authentication (if you choose it) | Email, display name |
+| **Sign in with Apple** | Apple Inc. | Account authentication (if you choose it) | Email or Apple private relay address, display name |
 | **Google Maps Platform** | Google LLC | Address autocomplete (Places API), transit time (Routes API), address coordinates (Geocoding API) | Address queries, origin/destination for transit (approximate location if permission granted) |
-| **AI Query Provider** | Google (Gemini), Anthropic, or OpenAI | Generate database queries from natural language questions (Explore → Ask AI) | Question text and database structure (table/column names only — never your actual data) |
+| **AI Query Provider** | Google (Gemini), Anthropic, or OpenAI | Generate database queries from natural language questions (Explore → Ask AI) | Your question as you typed it, plus the database structure (table and column names only, never rows read out of your database) |
 
 We do not share data with any advertising networks, data brokers, or analytics providers. The Google Maps API key is restricted to the Tend iOS app bundle ID and limited to the three APIs listed above.
 
@@ -198,19 +232,23 @@ We do not share data with any advertising networks, data brokers, or analytics p
 | **Cloud backup data** | Persists until you delete it in Settings or delete your account |
 | **Authentication data** | Persists until you delete your account |
 | **Notification queue** | Cleared after delivery or expiration (7 days) |
-| **Audit log** | Stored on-device only; deleted when you uninstall or delete your account |
-| **Diagnostic logs (local)** | Rotated and cleaned up automatically; cleared via Settings or on uninstall |
-| **Diagnostic logs (cloud)** | Uploaded only if cloud backup is enabled or manually triggered; deleted on account deletion |
+| **Audit log** | Part of your database, so it is included in the backup; deleted when you uninstall or delete your account |
+| **Diagnostic logs** | Sent while you are signed in; retained for troubleshooting; deleted on account deletion |
 | **Usage events** | Retained for product improvement; deleted on account deletion |
+| **Account summary** | One row per account, overwritten as it changes; deleted on account deletion |
 | **AI query usage counter** | Daily count per user; deleted on account deletion |
+| **Ask-AI questions that returned no results** | Question text plus the value-stripped query structure; kept indefinitely for prompt improvement; deleted on account deletion |
+| **Learned associations** | Kept until you clear them in Settings, delete the friends involved, or delete your account |
+| **Life events** | Kept until you delete the event, the friend, or your account |
 
 ### Account Deletion
 
 You can delete your account from within the App at **Settings → Delete Account**. This permanently removes:
-- All cloud backup data (auto-sync and manual backup slots)
+- All cloud backup data (auto-sync, daily snapshot, and manual backup slots)
 - Your authentication record
-- Remote diagnostic logs (if any)
-- Anonymous usage events
+- Your diagnostic logs
+- Your pseudonymous usage events and account summary
+- Any Ask-AI questions retained because they returned no results
 - Your Supabase user account
 
 On-device data is also deleted during this process. This action is irreversible.
@@ -221,7 +259,7 @@ On-device data is also deleted during this process. This action is irreversible.
 
 **We do not sell, rent, or share your personal data with third parties** except as described in Section 5 (third-party services required for App functionality).
 
-We may disclose data if required by law, but we have never received such a request and have no mechanism for bulk data extraction.
+We may disclose data if required by law. We have never received such a request. Because your backup is not end-to-end encrypted (see Section 3.2), we do hold the administrative access needed to read it, so we could not refuse such a request on technical grounds.
 
 ---
 
@@ -234,7 +272,7 @@ We protect your data through:
 - **Row-level security** — cloud data is isolated per user at the database level
 - **Transport encryption** — all network requests use TLS 1.2 or higher
 - **API key restrictions** — third-party API keys are restricted by iOS bundle identifier and limited to specific services
-- **No server-side data processing** — we do not run servers that process your data; Supabase handles storage and authentication directly
+- **Minimal server-side processing** — we run two small serverless functions on Supabase: one routes your Ask-AI question to the AI provider and returns a database query (your data is not sent), and one deletes your account and all its data. Everything else is storage and authentication handled by Supabase directly. We do not run any server that reads your friend or connection data
 
 ---
 
@@ -248,11 +286,11 @@ Tend is not directed at children under 13. We do not knowingly collect personal 
 
 Depending on your location, you may have the following rights:
 
-- **Access** — request a copy of your data (available via cloud backup export)
+- **Access** — email us at the address in Section 12 and we will send you a copy of your data. There is no in-app export yet
 - **Deletion** — delete your data at any time (per-friend, per-connection, or full account deletion)
 - **Correction** — edit any friend or connection data within the App
-- **Portability** — your data is stored in standard formats on your device
-- **Withdraw consent** — disable cloud backup, revoke iOS permissions, or delete your account at any time
+- **Portability** — your data is stored as a standard SQLite database, which is what a copy requested under Access contains
+- **Withdraw consent** — revoke iOS permissions, turn off association learning, delete your cloud data, or delete your account at any time. Cloud backup, diagnostic logs, and usage events currently have no individual off switch, so deleting your account is the way to withdraw from those
 - **Opt out of sale** — we do not sell your data, so there is nothing to opt out of
 
 **For California residents (CCPA/CPRA):** We do not sell or share personal information as defined by the CCPA. We do not use sensitive personal information for purposes beyond providing the App.
