@@ -40,6 +40,26 @@ The site is served under the `wolff.sh` custom domain, which is configured on th
 
 Also update `PRIVACY_POLICY_URL` in the Tend iOS app (`src/ui/components/settings/PrivacyPolicyLink.tsx`) if the URL path changes.
 
+## House Style: em-dashes are deliberate
+
+The content files use em-dashes heavily and structurally, including as the definition separator in
+`glossary.md` (`**Term** — definition`). There are 150+ across the content set. Removing them is a
+restyle of the site's voice, not a cleanup, so do not strip them as a side effect of another
+change. New prose written here may simply avoid them.
+
+## Claims About the App Must Be Verified Against the App
+
+The privacy policy, FAQ and feature copy assert how the Tend app behaves, and nothing on this side
+can check those claims, so they rot as the app changes. A 2026-10-26 audit found cloud backup
+described as optional in 17 places across 9 files when the app has no such toggle, `backup.md`
+giving steps for a control that does not exist, and a whole privacy-policy section describing a
+file-based logging system deleted from the app in April.
+
+Before writing or repeating any behavioural claim, check it in the app repo
+(`~/development/friend-reach/src/`). `docs/play-data-safety-declaration.md` there is the best
+cross-check: it is maintained per data type with file-and-line evidence, and the Data Safety form
+makes the policy binding, so the two must agree.
+
 ## SPA Routing on GitHub Pages
 
 GitHub Pages doesn't natively support SPA routing. The workaround:
