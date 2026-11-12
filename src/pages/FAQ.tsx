@@ -116,11 +116,11 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         question: 'How does the recovery blocker work?',
-        answer: 'When Social Energy detects you\'ve exceeded your thresholds, it finds the next free day and creates a recovery block on your calendar. Blocks can be half-day or full day depending on your preset. Dismiss any block with a single tap.',
+        answer: 'When Social Energy detects you\'ve exceeded your thresholds, it finds the next free day and creates a recovery block on your calendar. Every block is an evening window, whatever your preset. To dismiss one, tap its card and choose Remove; note that a dismissed block still counts against that week\'s allowance, so the next trigger may produce nothing.',
       },
       {
         question: 'What are the preset options?',
-        answer: '"Recharge Often" triggers recovery after 2 consecutive social days or 3 in a week — best for introverts. "Balanced" triggers after 3 days or 4 in a week. "Always On" allows up to 5 consecutive days or 6 in a week. Enable Extra Recovery to lower all thresholds by 1.',
+        answer: '"Recharge" (shown as Recharge Often in some docs) allows 2 consecutive social days and 3 in a week, so a block appears once you go over — best for introverts. "Balanced" triggers after 3 days or 4 in a week. "Always On" allows up to 5 consecutive days or 6 in a week. Enable Extra Recovery to lower all thresholds by 1.',
       },
     ],
   },

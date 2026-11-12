@@ -21,7 +21,7 @@ Tend doesn't spam you. Each friend gets at most one active reminder at a time.
 
 ## Quiet hours
 
-Tend respects your schedule. Set quiet hours in **Settings → Notifications** to prevent reminders during sleep or focus time. Notifications are held and delivered at the next available time.
+Tend respects your schedule. Set quiet hours in **Settings → Reminders & Notifications** to prevent reminders during sleep or focus time. Notifications are held and delivered at the next available time.
 
 ## The Notification Center
 
@@ -36,7 +36,7 @@ The bell badge shows the pending count. Opening the inbox groups items by urgenc
 
 Every row in the Notification Center is swipeable:
 
-- **Swipe left** reveals the primary actions for that notification type: **log the connection**, **snooze** (pushes it back by 1 day, where supported), and **delete** (drops the notification without logging).
+- **Swipe left** reveals the primary actions for that notification type: **log the connection**, **snooze** (pushes it back about an hour, where supported), and **delete** (drops the notification without logging).
 - **Swipe right** reveals a shortcut to **View Profile** for the friend the notification is about.
 - **Tap the row** opens the primary action for that notification's type — the connection form (for reach-out and future-connection reminders) or the friend's profile (for birthdays and info-only prompts).
 
@@ -47,19 +47,19 @@ You can also **Clear All** from the header to empty the inbox at once — useful
 Two ways to defer a reminder:
 
 ### Skip (long-press → "Skip this time")
-- Advances the due date by **one full frequency cycle**
+- Sets the next due date **one full frequency cycle from today**, so time you were already overdue is forgiven rather than carried forward
 - Means "I'm intentionally not reaching out this cycle"
 - Shows in the friend's audit log as "Skipped"
 - 5-second undo toast in case of accidental tap
 
 ### Snooze (swipe on notification)
-- Pushes the notification back by **1 day**
+- Pushes the notification back by **about an hour**, moved out of your quiet hours if it lands in them
 - Means "not right now, but soon"
 - The friend is still due — just the notification is delayed
 
 ## Notification settings
 
-In **Settings → Notifications**, you can configure:
+In **Settings → Reminders & Notifications**, you can configure:
 
 - **Per-type toggles** — enable/disable each notification type independently
 - **Quiet hours** — start and end time (notifications held during this window)

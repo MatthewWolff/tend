@@ -196,6 +196,7 @@ All permissions are optional. The App functions without any of them.
 | **Notifications** | Send local reminders when friends are overdue or have upcoming birthdays | During onboarding or in Settings |
 | **Calendar** | Write logged connections as calendar events; resync after cloud restore | When you enable Calendar Sync in Settings |
 | **Location (When In Use)** | Show transit time to a friend's address; record location on a connection | When you view a transit card or add a location to a connection |
+| **Photos (Picker)** | Choose a profile picture for a friend | When you tap to set a friend's photo |
 
 ### Contact Access Details
 
@@ -252,6 +253,10 @@ You can delete your account from within the App at **Settings → Delete Account
 - Your Supabase user account
 
 On-device data is also deleted during this process. This action is irreversible.
+
+One thing deletion does **not** remove: events the App created in your device's calendar. Those
+live in your calendar rather than in the App, and their titles can include friends' names, so
+remove them from the Calendar app if you want them gone.
 
 ---
 

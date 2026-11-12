@@ -79,7 +79,7 @@ This prevents the "I added friends on my iPad yesterday and they're missing on m
 
 - Backups are tied to your authenticated account
 - Row-Level Security (RLS) on the cloud database prevents unauthorized access
-- You can delete all cloud data from **Settings → Cloud Backup → Delete Cloud Data**
+- You can delete all cloud data from **Settings → Data & Backup → Delete Cloud Data**
 - Deleting your account permanently removes all cloud data
 
 ## Troubleshooting

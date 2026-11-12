@@ -24,13 +24,19 @@ Social Energy is **off by default** — it never creates calendar events until y
 
 ## The three presets
 
-| Preset | Consecutive days | Weekly cap | Recovery duration |
-|---|---|---|---|
-| **Recharge Often** | 2 days | 3 days/week | Half-day (9 AM–5 PM) |
-| **Balanced** | 3 days | 4 days/week | Morning (9 AM–1 PM) |
-| **Always On** | 5 days | 6 days/week | Morning (9 AM–1 PM) |
+A threshold triggers when you go OVER it, so "2 days" means a block appears on the third
+consecutive social day. In the app the first preset is labelled simply **Recharge**.
 
-- **Recharge Often** is best for introverts or anyone who finds socializing draining after a couple of days in a row.
+| Preset | Consecutive days allowed | Weekly cap |
+|---|---|---|
+| **Recharge** | 2 | 3 days/week |
+| **Balanced** | 3 | 4 days/week |
+| **Always On** | 5 | 6 days/week |
+
+Every recovery block is the same evening window whatever your preset, so there is no
+per-preset duration.
+
+- **Recharge** is best for introverts or anyone who finds socializing draining after a couple of days in a row.
 - **Balanced** is a good default for most people.
 - **Always On** is for highly social people who rarely need downtime but want a safety net.
 
@@ -38,15 +44,13 @@ Social Energy is **off by default** — it never creates calendar events until y
 
 Toggle **Extra Recovery** to lower all thresholds by 1. Research shows that people with ADHD experience social fatigue faster due to the executive effort of sustained social engagement, and this mode gives anyone who needs more breathing room — neurodivergent or otherwise — a lower bar for Social Energy to kick in.
 
-With Extra Recovery on, the "Balanced" preset triggers after just 2 consecutive days or 3 days in a week — effectively matching the "Recharge Often" defaults.
+With Extra Recovery on, the "Balanced" preset allows 2 consecutive days rather than 3, effectively matching the Recharge defaults.
 
 ## How recovery blocks appear in the calendar
 
-When a heuristic triggers, Tend creates a calendar event on the next free day:
-
-- **Morning block**: 9 AM to 1 PM (4 hours)
-- **Half-day block**: 9 AM to 5 PM (8 hours)
-- **Full-day block**: All day
+When a heuristic triggers, Tend creates a calendar event on the next free day, in the
+evening (5 PM to 10 PM). There are no half-day or full-day variants, and the window does
+not vary by preset.
 
 The event appears in your iOS Calendar with a title like "Recovery Time" so you can see it alongside your other commitments.
 

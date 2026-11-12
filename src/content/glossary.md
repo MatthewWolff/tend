@@ -64,17 +64,17 @@ If a doc or page says something different from what's listed here, the other pag
 
 **Event** — the container for one or more connections that share a date, location, and context (e.g., a group dinner). Used whenever a hangout involves more than one friend, even if you're writing a single note.
 
-**Quick Log** — the long-press action on a friend or Due Soon row that opens an action sheet with four options: Call, Text, Hangout, Video.
+**Quick Log** — the long-press action on a friend or Due Soon row that opens an action sheet offering the four connection types (Call, Text, Hangout, Video) plus adding the friend to a recent event, skipping this time, and pausing reminders.
 
-**Skip** — the long-press action that advances a friend's due date by one frequency cycle without logging a connection. Distinct from Snooze.
+**Skip** — the long-press action that sets a friend's next due date one full frequency cycle from today, without logging a connection. Measured from today, not from the old due date. Distinct from Snooze.
 
-**Snooze** — pushing a reminder back by 1 day. Affects the notification; doesn't change the due date.
+**Snooze** — pushing a reminder back about an hour, moved out of your quiet hours if it lands in them. Affects the notification; doesn't change the due date.
 
 ## Contact & Calendar
 
 **Linked Contact** — a friend bound to an iOS Contacts record. Shown with a badge on the profile.
 
-**Contact Sync** — the one-tap action under Settings → Connected Apps that pulls updated fields (phone, email, address, birthday, photo) from linked iOS contacts.
+**Contact Sync** — the one-tap action under Settings → Connected Apps & Sync that pulls updated fields (phone, email, address, birthday, photo) from linked iOS contacts.
 
 **Auto-Spread** — the bulk-import behavior (for 10+ imported friends) that evenly distributes initial due dates across the frequency window so day one doesn't flood you with reach-out prompts.
 

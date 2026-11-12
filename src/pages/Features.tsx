@@ -22,7 +22,7 @@ const FEATURES: FeatureSection[] = [
     details: [
       'Inner Circle, Close Friends, Regulars, and Casual',
       'Set custom frequencies per friend (every 3 days, every 2 weeks, etc.)',
-      'Four-question tier quiz calibrates boundaries to your life',
+      'A three-question quiz calibrates the boundaries to your life',
     ],
   },
   {
@@ -52,7 +52,7 @@ const FEATURES: FeatureSection[] = [
     title: 'Learned Friend Associations',
     description: 'After 3+ group hangouts with the same pair, Tend notices which friends you tend to see together and quietly suggests linking them. Accept, dismiss, or turn off the learning entirely — and manually link any two friends whenever you want.',
     details: [
-      'Passive learning from shared hangouts — nothing uploaded',
+      'Passive learning from shared hangouts, stored as counts with no names in them',
       '"Often with Alice" sub-labels in the friend picker when planning',
       'Suggestions surface on profiles and after saving group events',
       'Opt out or clear learned data from Settings',
@@ -63,7 +63,7 @@ const FEATURES: FeatureSection[] = [
     title: 'Social Energy',
     description: 'Detects when you\'re socially over-committed, nudges you before you over-schedule, and auto-blocks recovery time on your calendar.',
     details: [
-      'Three presets: Recharge Often, Balanced, Always On',
+      'Three presets: Recharge, Balanced, Always On',
       'Extra Recovery: lower thresholds for neurodivergent needs',
       'Auto-blocks Recovery Block events in your iOS calendar',
       'Smart density nudges before you save a crowded week',
@@ -95,8 +95,8 @@ const FEATURES: FeatureSection[] = [
     title: 'Calendar Sync',
     description: 'Scheduled connections automatically appear in your iOS calendar with the friend\'s name, time, and location. Events are timezone-aware — a 6 PM dinner in New York stays a 6 PM dinner even when you\'re on the road.',
     details: [
-      'Two-way sync with iOS Calendar',
-      'Configurable reminders (15min, 30min, 1hr before)',
+      'One-way sync to your calendar, kept in step after edits',
+      'Configurable reminders (none, 15min, 30min, 1hr or 2hr before)',
       'Per-event timezone locks the clock to the hangout\'s city',
       'One-tap Sync Now to resync everything',
     ],
@@ -104,9 +104,9 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <WifiOff size={26} strokeWidth={1.5} />,
     title: 'Offline-First',
-    description: 'Everything works without an internet connection. Your data lives on your device and syncs to the cloud once you are back online.',
+    description: 'Your friends, your logging and your reminders all work without a connection. Your data lives on your device and syncs to the cloud once you are back online.',
     details: [
-      'Full functionality offline',
+      'Friends, logging and reminders work offline. AI queries, transit times and address lookup need a connection',
       'Automatic cloud backup, encrypted in transit and at rest',
       'Restore on a new device from any backup slot',
     ],
@@ -197,7 +197,7 @@ const FEATURES: FeatureSection[] = [
   {
     icon: <ShieldCheck size={26} strokeWidth={1.5} />,
     title: 'Private by Design',
-    description: 'No ads, no tracking SDKs, no third-party analytics. Your friendship data is yours alone, and never sold or shared.',
+    description: 'No ads, no tracking SDKs, no third-party analytics. Your friendship data is never sold or shared.',
     details: [
       'Your data lives on-device in SQLite, and is backed up to the cloud for you',
       'Cloud backup encrypted in transit and at rest, isolated per user',
