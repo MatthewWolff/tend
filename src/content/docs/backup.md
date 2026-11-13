@@ -1,6 +1,6 @@
 # Backup & Restore
 
-Tend keeps your data in a database on your device, and backs that database up to the cloud automatically once you sign in. Uploads are encrypted in transit and at rest by the cloud provider. There is currently no setting to turn automatic backup off, though you can delete your cloud data at any time.
+Tend keeps your data in a database on your device, and backs that database up to the cloud automatically once you sign in. Uploads are encrypted in transit and at rest by the cloud provider. Automatic backup is on by default, and **Delete Cloud Data** turns it off and removes every cloud copy in one action.
 
 ## How backup works
 
@@ -19,11 +19,14 @@ All backups are:
 
 ## Managing backup
 
-Continuous sync and the daily snapshot need no setup: they start on their own once you are signed in. The **Settings → Cloud Backup** screen is where you manage the rest.
+Continuous sync and the daily snapshot need no setup: they start on their own once you are signed in. **Settings → Data & Backup** is where you manage the rest.
 
 - **Create Backup** fills one of the three manual slots. When all three are full, the oldest rolls off.
 - **Restore Data** pulls a chosen slot back down over your local database.
-- **Delete Cloud Data** removes every slot from the cloud.
+- **Delete Cloud Data** removes every slot from the cloud and switches automatic backup off, because a copy would otherwise be uploaded again within seconds. Your friends and connections stay on the device.
+- **Turn On Cloud Backup** replaces that row once backup is off, and starts the automatic upload again.
+
+With automatic backup off, **Create Backup** still works: filling a slot yourself is a deliberate upload, so Tend does not take the button away.
 
 ## Restoring from backup
 

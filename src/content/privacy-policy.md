@@ -1,7 +1,7 @@
 # Privacy Policy
 
 **Effective Date:** June 8, 2026
-**Last Updated:** October 26, 2026
+**Last Updated:** November 12, 2026
 
 Tend ("the App") is a personal relationship manager for iOS built by Matthew Wolff ("we," "us," or "our"). This policy explains what data the App collects, how it is used, where it is stored, and what choices you have.
 
@@ -9,7 +9,7 @@ Tend ("the App") is a personal relationship manager for iOS built by Matthew Wol
 
 ## At a Glance
 
-- Your data lives in a database on your device. That database is also backed up to our cloud automatically (see Section 3.2), protected by row-level security so only your account can read it.
+- Your data lives in a database on your device. That database is also backed up to our cloud automatically (see Section 3.2), protected by row-level security so only your account can read it. You can turn that backup off and delete the cloud copies from Settings.
 - Most of what you store is about other people: your friends' names, birthdays, phone numbers, addresses, and your private notes about them. They did not install Tend. Please treat their data with the care you would want for your own.
 - We do not sell, rent, share, or monetize your data.
 - We do not use third-party analytics, advertising, or tracking SDKs.
@@ -156,9 +156,9 @@ Additional local storage:
 - **iOS Keychain** — securely stores your authentication credentials
 - **AsyncStorage** — stores temporary App state (e.g., onboarding progress)
 
-### 3.2 Cloud Backup (On by Default)
+### 3.2 Cloud Backup (On by Default, and You Can Turn It Off)
 
-Once you sign in, Tend continuously backs your database up to Supabase (our cloud provider). This is on by default and there is currently no setting to turn it off.
+Once you sign in, Tend continuously backs your database up to Supabase (our cloud provider). This is on by default. You can switch it off at **Settings → Data & Backup → Delete Cloud Data**, which deletes every cloud copy and stops the automatic upload in the same action, and the same row turns it back on whenever you want one again.
 
 When your data changes, the App waits about 30 seconds and then uploads the **entire database file**, not a selected subset. That means the backup contains everything in Section 1.1 and Section 1.2: your friends' names, nicknames, birthdays, phone numbers, email addresses, home addresses and geocoded coordinates, your notes about them, their life events including any you recorded under Health or Loss, your plans, your audit log, and your learned associations. Photos are not uploaded; only the local file path to a photo is stored.
 
@@ -171,7 +171,7 @@ Cloud data is protected by:
 
 The backup is not end-to-end encrypted, so it is not technically sealed against us the way a zero-knowledge service would be.
 
-To delete your cloud data, use "Delete Cloud Data" in Settings, or delete your account to remove it permanently along with everything else.
+To delete your cloud data, use "Delete Cloud Data" in Settings, or delete your account to remove it permanently along with everything else. Deleting the cloud copies leaves your friends and connections on the device untouched; manual backup slots you fill yourself still work while automatic backup is off, because filling one is a deliberate upload.
 
 ### 3.3 Authentication
 
@@ -295,7 +295,7 @@ Depending on your location, you may have the following rights:
 - **Deletion** — delete your data at any time (per-friend, per-connection, or full account deletion)
 - **Correction** — edit any friend or connection data within the App
 - **Portability** — your data is stored as a standard SQLite database, which is what a copy requested under Access contains
-- **Withdraw consent** — revoke iOS permissions, turn off association learning, delete your cloud data, or delete your account at any time. Cloud backup, diagnostic logs, and usage events currently have no individual off switch, so deleting your account is the way to withdraw from those
+- **Withdraw consent** — revoke iOS permissions, turn off association learning, turn off cloud backup and delete the cloud copies with **Delete Cloud Data**, or delete your account at any time. Diagnostic logs and usage events still have no individual off switch, so deleting your account is the way to withdraw from those two
 - **Opt out of sale** — we do not sell your data, so there is nothing to opt out of
 
 **For California residents (CCPA/CPRA):** We do not sell or share personal information as defined by the CCPA. We do not use sensitive personal information for purposes beyond providing the App.

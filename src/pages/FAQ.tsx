@@ -83,7 +83,7 @@ const FAQ_DATA: FAQCategory[] = [
     items: [
       {
         question: 'Where is my data stored?',
-        answer: 'Your data lives in a SQLite database on your device, and that database is backed up to Supabase automatically once you sign in. Uploads are encrypted in transit and at rest, and row-level security means only your account can read them. There is currently no setting to turn backup off, but you can delete your cloud data at any time.',
+        answer: 'Your data lives in a SQLite database on your device, and that database is backed up to Supabase automatically once you sign in. Uploads are encrypted in transit and at rest, and row-level security means only your account can read them. Backup is on by default, and Settings → Data & Backup → Delete Cloud Data removes every cloud copy and turns the automatic upload off in one action. The same row turns it back on.',
       },
       {
         question: 'Do you track or sell my data?',
